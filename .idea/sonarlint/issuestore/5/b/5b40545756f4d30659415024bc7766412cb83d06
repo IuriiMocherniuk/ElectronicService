@@ -1,0 +1,8 @@
+
+[
+java:S1854	"9Remove this useless assignment to local variable "owner".(âŒÒµøÿÿÿÿ8•Ù÷ÜÅ/
+L
+java:S1481	"*Remove this unused "owner" local variable.(âŒÒµøÿÿÿÿ8›Ù÷ÜÅ/
+]	java:S125
+"<This block of commented-out lines of code should be removed.(ĞáÀ†şÿÿÿÿ8œÙ÷ÜÅ/
+N	java:S106"9Replace this use of System.out or System.err by a logger.(ë¨¢—

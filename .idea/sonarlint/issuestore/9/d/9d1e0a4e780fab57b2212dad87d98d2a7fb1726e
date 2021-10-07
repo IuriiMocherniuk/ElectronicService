@@ -1,0 +1,12 @@
+
+]
+java:S4684"@Replace this persistent entity with a simple POJO or DTO object.(ûÎ“Ñ8ÊšíŞÅ/
+C
+java:S1452"&Remove usage of generic wildcard type.(ûÎ“Ñ8ƒ×ëŞÅ/
+Z	java:S106"9Replace this use of System.out or System.err by a logger.(–‡£«ıÿÿÿÿ8£ÖêŞÅ/
+]
+java:S46842"@Replace this persistent entity with a simple POJO or DTO object.(°ÆÀõ8¶ìøŞÅ/
+C
+java:S14522"&Remove usage of generic wildcard type.(°ÆÀõ8‹×ëŞÅ/
+B
+java:S14529"&Remove usage of generic wildcard type.(ÀÚú88‹×ëŞÅ/
