@@ -1,0 +1,58 @@
+package com.softserve.academy.electronicservice.dao;
+
+import com.softserve.academy.electronicservice.model.Owner;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+import java.util.List;
+
+@Repository
+public class OwnerDaoImp implements OwnerDao {
+    @Autowired
+    private SessionFactory sessionFactory;
+
+    @Override
+    public long save(Owner owner) {
+        sessionFactory.getCurrentSession().save(owner);
+        return owner.getId();
+
+    }
+
+    @Override
+    public Owner get(long id) {
+        return sessionFactory.getCurrentSession().get(Owner.class, id);
+    }
+
+    @Override
+    public List<Owner> list() {
+        Session session = sessionFactory.getCurrentSession();
+        CriteriaBuilder cb = session.getCriteriaBuilder();
+        CriteriaQuery<Owner> cq = cb.createQuery(Owner.class);
+        Root<Owner> root = cq.from(Owner.class);
+        cq.select(root);
+        Query<Owner> query = session.createQuery(cq);
+        return query.getResultList();
+    }
+
+    @Override
+    public void update(long id, Owner owner) {
+        Session session = sessionFactory.getCurrentSession();
+        Owner owner2 = session.byId(Owner.class).load(id);
+        owner2.setFirstName(owner.getFirstName());
+        owner2.setFirstName(owner.getFirstName());
+       // owner2.setAuthor(owner.getAuthor());
+        session.flush();
+
+    }
+
+    @Override
+    public void delete(long id) {
+
+    }
+}

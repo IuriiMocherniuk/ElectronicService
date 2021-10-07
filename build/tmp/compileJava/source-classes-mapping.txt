@@ -1,0 +1,16 @@
+com/softserve/academy/electronicservice/model/Device.java
+ com.softserve.academy.electronicservice.model.Device
+com/softserve/academy/electronicservice/configuration/AppConfig.java
+ com.softserve.academy.electronicservice.configuration.AppConfig
+com/softserve/academy/electronicservice/model/Owner.java
+ com.softserve.academy.electronicservice.model.Owner
+com/softserve/academy/electronicservice/Main.java
+ com.softserve.academy.electronicservice.Main
+com/softserve/academy/electronicservice/configuration/MyWebAppInitializer.java
+ com.softserve.academy.electronicservice.configuration.MyWebAppInitializer
+com/softserve/academy/electronicservice/dao/OwnerDao.java
+ com.softserve.academy.electronicservice.dao.OwnerDao
+com/softserve/academy/electronicservice/configuration/WebConfig.java
+ com.softserve.academy.electronicservice.configuration.WebConfig
+com/softserve/academy/electronicservice/dao/OwnerDaoImp.java
+ com.softserve.academy.electronicservice.dao.OwnerDaoImp
