@@ -20,6 +20,7 @@ import java.util.List;
 @RestController
 public class OwnerController {
 
+    //TODO MOVE TO CONSTRUCTOR
     @Autowired
     private OwnerService ownerService;
 
@@ -28,7 +29,7 @@ public class OwnerController {
     public ResponseEntity<?> save(@RequestBody Owner owner) {
         System.out.println("the json value of owner is :::::: "+owner);
         long id = ownerService.save(owner);
-        return ResponseEntity.ok().body("New Book has been saved with ID:" + id);
+        return ResponseEntity.ok().body("New Owner has been saved with ID:" + id);
     }
 
     /*---Get a owner by id---*/
@@ -49,14 +50,14 @@ public class OwnerController {
     @PutMapping("/owner/{id}")
     public ResponseEntity<?> update(@PathVariable("id") long id, @RequestBody Owner owner) {
         ownerService.update(id, owner);
-        return ResponseEntity.ok().body("Book has been updated successfully.");
+        return ResponseEntity.ok().body("Owner has been updated successfully.");
     }
 
     /*---Delete a owner by id---*/
     @DeleteMapping("/owner/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") long id) {
         ownerService.delete(id);
-        return ResponseEntity.ok().body("Book has been deleted successfully.");
+        return ResponseEntity.ok().body("Owner has been deleted successfully.");
     }
 
 

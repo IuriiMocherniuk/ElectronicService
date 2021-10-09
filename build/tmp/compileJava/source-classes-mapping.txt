@@ -10,7 +10,13 @@ com/softserve/academy/electronicservice/configuration/MyWebAppInitializer.java
  com.softserve.academy.electronicservice.configuration.MyWebAppInitializer
 com/softserve/academy/electronicservice/dao/OwnerDao.java
  com.softserve.academy.electronicservice.dao.OwnerDao
-com/softserve/academy/electronicservice/Main.java
- com.softserve.academy.electronicservice.Main
+com/softserve/academy/electronicservice/service/OwnerService.java
+ com.softserve.academy.electronicservice.service.OwnerService
 com/softserve/academy/electronicservice/dao/OwnerDaoImp.java
  com.softserve.academy.electronicservice.dao.OwnerDaoImp
+com/softserve/academy/electronicservice/service/OwnerServiceImp.java
+ com.softserve.academy.electronicservice.service.OwnerServiceImp
+com/softserve/academy/electronicservice/Main.java
+ com.softserve.academy.electronicservice.Main
+com/softserve/academy/electronicservice/controller/OwnerController.java
+ com.softserve.academy.electronicservice.controller.OwnerController

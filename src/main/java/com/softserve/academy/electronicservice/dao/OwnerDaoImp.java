@@ -26,8 +26,8 @@ public class OwnerDaoImp implements OwnerDao {
 
     @Override
     public Owner get(long id) {
-        return sessionFactory.getCurrentSession().get(Owner.class, id);
-        //return new Owner("Ivan", "Ivanov", "password1");
+       // return sessionFactory.getCurrentSession().get(Owner.class, id);
+        return new Owner("Ivan", "Ivanov", "password1");
     }
 
     @Override
