@@ -1,6 +1,6 @@
 package com.softserve.academy.electronicservice.configuration;
 
-import org.springframework.core.env.Environment; //import nok
+import org.springframework.core.env.Environment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -12,10 +12,6 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import java.util.Properties;
 import static org.hibernate.cfg.Environment.*;
-
-
-//import org.springframework.core.env.Environment;
-
 
 @Configuration
 @PropertySource("classpath:hibernate.properties")
@@ -32,8 +28,8 @@ public class AppConfig {
     @Bean
     public LocalSessionFactoryBean getSessionFactory() {
         LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
-
         Properties props = new Properties();
+
         // Setting JDBC properties
         props.put(DRIVER, env.getProperty("hibernate.connection.driver_class"));
         props.put(URL, env.getProperty("hibernate.connection.url"));

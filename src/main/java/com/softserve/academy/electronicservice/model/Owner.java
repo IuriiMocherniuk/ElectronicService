@@ -27,7 +27,7 @@ public class Owner {
 
     @MapsId
     @OneToMany(mappedBy = "owner")
-    private List<Device> deviceList;
+    private List<Owner> deviceList;
 
     public long getId() {
         return id;
@@ -77,11 +77,11 @@ public class Owner {
         this.createdDate = createdDate;
     }
 
-    public List<Device> getDeviceList() {
+    public List<Owner> getDeviceList() {
         return deviceList;
     }
 
-    public void setDeviceList(List<Device> deviceList) {
+    public void setDeviceList(List<Owner> deviceList) {
         this.deviceList = deviceList;
     }
 
