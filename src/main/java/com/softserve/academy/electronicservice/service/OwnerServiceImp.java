@@ -12,8 +12,12 @@ import java.util.List;
 @Transactional(readOnly = true)
 public class OwnerServiceImp implements OwnerService{
 
+    private final OwnerDao ownerDao;
+
     @Autowired
-    private OwnerDao ownerDao;
+    public OwnerServiceImp(OwnerDao ownerDao) {
+        this.ownerDao = ownerDao;
+    }
 
     @Transactional
     @Override

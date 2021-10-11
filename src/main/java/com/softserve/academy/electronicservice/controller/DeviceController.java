@@ -20,9 +20,12 @@ import java.util.List;
 @RestController
 public class DeviceController {
 
-    //TODO MOVE TO CONSTRUCTOR
+    private final DeviceService deviceService;
+
     @Autowired
-    private DeviceService deviceService;
+    public DeviceController(DeviceService deviceService) {
+        this.deviceService = deviceService;
+    }
 
     /*---Add new device---*/
     @PostMapping("/device")

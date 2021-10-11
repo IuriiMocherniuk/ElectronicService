@@ -7,6 +7,7 @@ import java.util.Objects;
 @Entity
 @Table (name = "devices")
 public class Device {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

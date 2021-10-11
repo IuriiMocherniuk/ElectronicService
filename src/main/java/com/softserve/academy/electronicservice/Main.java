@@ -6,11 +6,11 @@ import com.softserve.academy.electronicservice.model.Owner;
 
 public class Main {
     public static void main(String[] args){
-        Owner owner = new Owner("Ivan", "Ivanov", "password1");
+       // Owner owner = new Owner("Ivan", "Ivanov", "password1");
        // System.out.println(owner.toString());
 
-        OwnerDao ownerDao = new OwnerDaoImp();
-        System.out.println(ownerDao.get(1));
+       // OwnerDao ownerDao = new OwnerDaoImp();
+      //  System.out.println(ownerDao.get(1));
 
     }
 }

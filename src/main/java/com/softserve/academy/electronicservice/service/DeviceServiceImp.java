@@ -12,11 +12,15 @@ import java.util.List;
 @Transactional(readOnly = true)
 public class DeviceServiceImp implements DeviceService {
 
-   @Autowired
-   private DeviceDao deviceDao;
+    private final DeviceDao deviceDao;
 
-    @Transactional
+   @Autowired
+    public DeviceServiceImp(DeviceDao deviceDao) {
+        this.deviceDao = deviceDao;
+    }
+
     @Override
+    @Transactional
     public long save(Device device) {
         return deviceDao.save(device);
     }

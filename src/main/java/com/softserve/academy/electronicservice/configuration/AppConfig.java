@@ -10,20 +10,27 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+
 import java.util.Properties;
+
 import static org.hibernate.cfg.Environment.*;
 
 @Configuration
 @PropertySource("classpath:hibernate.properties")
 @EnableTransactionManagement
-
-@ComponentScans(value = { @ComponentScan("com.softserve.academy.electronicservice.dao"),
-        @ComponentScan("com.softserve.academy.electronicservice.service") })
+@ComponentScans(value = {@ComponentScan("com.softserve.academy.electronicservice.*")})
+//        (value = com.softserve.academy.electronicservice)
+//@ComponentScans(value = {@ComponentScan("com.softserve.academy.electronicservice.dao"),
+//        @ComponentScan("com.softserve.academy.electronicservice.service")})
 
 public class AppConfig {
 
-    @Autowired
     private Environment env;
+
+    @Autowired
+    public AppConfig(Environment env) {
+        this.env = env;
+    }
 
     @Bean
     public LocalSessionFactoryBean getSessionFactory() {
@@ -60,7 +67,6 @@ public class AppConfig {
         transactionManager.setSessionFactory(getSessionFactory().getObject());
         return transactionManager;
     }
-    
 
 
 }

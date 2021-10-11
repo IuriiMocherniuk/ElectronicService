@@ -1,9 +1,11 @@
 package com.softserve.academy.electronicservice.dao;
 
 import com.softserve.academy.electronicservice.model.Owner;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface OwnerDao {
 
        long save(Owner owner);

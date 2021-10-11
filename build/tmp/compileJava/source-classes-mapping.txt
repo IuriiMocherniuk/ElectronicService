@@ -1,32 +1,32 @@
-com/softserve/academy/electronicservice/configuration/WebConfig.java
- com.softserve.academy.electronicservice.configuration.WebConfig
-com/softserve/academy/electronicservice/service/OwnerService.java
- com.softserve.academy.electronicservice.service.OwnerService
-com/softserve/academy/electronicservice/dao/OwnerDao.java
- com.softserve.academy.electronicservice.dao.OwnerDao
-com/softserve/academy/electronicservice/service/OwnerServiceImp.java
- com.softserve.academy.electronicservice.service.OwnerServiceImp
-com/softserve/academy/electronicservice/controller/OwnerController.java
- com.softserve.academy.electronicservice.controller.OwnerController
-com/softserve/academy/electronicservice/model/Owner.java
- com.softserve.academy.electronicservice.model.Owner
-com/softserve/academy/electronicservice/model/Device.java
- com.softserve.academy.electronicservice.model.Device
 com/softserve/academy/electronicservice/dao/DeviceDao.java
  com.softserve.academy.electronicservice.dao.DeviceDao
 com/softserve/academy/electronicservice/dao/DeviceDaoImp.java
  com.softserve.academy.electronicservice.dao.DeviceDaoImp
-com/softserve/academy/electronicservice/configuration/AppConfig.java
- com.softserve.academy.electronicservice.configuration.AppConfig
+com/softserve/academy/electronicservice/model/Owner.java
+ com.softserve.academy.electronicservice.model.Owner
 com/softserve/academy/electronicservice/Main.java
  com.softserve.academy.electronicservice.Main
 com/softserve/academy/electronicservice/configuration/MyWebAppInitializer.java
  com.softserve.academy.electronicservice.configuration.MyWebAppInitializer
-com/softserve/academy/electronicservice/controller/DeviceController.java
- com.softserve.academy.electronicservice.controller.DeviceController
-com/softserve/academy/electronicservice/service/DeviceService.java
- com.softserve.academy.electronicservice.service.DeviceService
-com/softserve/academy/electronicservice/dao/OwnerDaoImp.java
- com.softserve.academy.electronicservice.dao.OwnerDaoImp
+com/softserve/academy/electronicservice/configuration/AppConfig.java
+ com.softserve.academy.electronicservice.configuration.AppConfig
+com/softserve/academy/electronicservice/service/OwnerService.java
+ com.softserve.academy.electronicservice.service.OwnerService
+com/softserve/academy/electronicservice/dao/OwnerDao.java
+ com.softserve.academy.electronicservice.dao.OwnerDao
 com/softserve/academy/electronicservice/service/DeviceServiceImp.java
  com.softserve.academy.electronicservice.service.DeviceServiceImp
+com/softserve/academy/electronicservice/model/Device.java
+ com.softserve.academy.electronicservice.model.Device
+com/softserve/academy/electronicservice/dao/OwnerDaoImp.java
+ com.softserve.academy.electronicservice.dao.OwnerDaoImp
+com/softserve/academy/electronicservice/service/DeviceService.java
+ com.softserve.academy.electronicservice.service.DeviceService
+com/softserve/academy/electronicservice/service/OwnerServiceImp.java
+ com.softserve.academy.electronicservice.service.OwnerServiceImp
+com/softserve/academy/electronicservice/configuration/WebConfig.java
+ com.softserve.academy.electronicservice.configuration.WebConfig
+com/softserve/academy/electronicservice/controller/DeviceController.java
+ com.softserve.academy.electronicservice.controller.DeviceController
+com/softserve/academy/electronicservice/controller/OwnerController.java
+ com.softserve.academy.electronicservice.controller.OwnerController

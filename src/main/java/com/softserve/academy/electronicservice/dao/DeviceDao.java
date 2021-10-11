@@ -1,10 +1,11 @@
 package com.softserve.academy.electronicservice.dao;
 
 import com.softserve.academy.electronicservice.model.Device;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface DeviceDao {
 
        long save(Device device);

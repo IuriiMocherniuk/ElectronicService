@@ -20,9 +20,12 @@ import java.util.List;
 @RestController
 public class OwnerController {
 
-    //TODO MOVE TO CONSTRUCTOR
+    private final OwnerService ownerService;
+
     @Autowired
-    private OwnerService ownerService;
+    public OwnerController(OwnerService ownerService) {
+        this.ownerService = ownerService;
+    }
 
     /*---Add new owner---*/
     @PostMapping("/owner")
