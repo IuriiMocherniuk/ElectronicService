@@ -17,7 +17,8 @@ public class Device {
     private Long code;
 
     @ManyToOne
-    @JoinColumn(name = "id", referencedColumnName = "owner_id")
+    //TODO CHECK
+    @JoinColumn(name = "owner_id", referencedColumnName = "id")
     private Owner owner;
 
     private String status;

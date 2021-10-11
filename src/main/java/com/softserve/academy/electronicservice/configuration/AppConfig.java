@@ -18,10 +18,9 @@ import static org.hibernate.cfg.Environment.*;
 @Configuration
 @PropertySource("classpath:hibernate.properties")
 @EnableTransactionManagement
-@ComponentScans(value = {@ComponentScan("com.softserve.academy.electronicservice.*")})
-//        (value = com.softserve.academy.electronicservice)
-//@ComponentScans(value = {@ComponentScan("com.softserve.academy.electronicservice.dao"),
-//        @ComponentScan("com.softserve.academy.electronicservice.service")})
+//@ComponentScans(value = {@ComponentScan("com.softserve.academy.electronicservice.*")})
+@ComponentScans(value = {@ComponentScan("com.softserve.academy.electronicservice.dao"),
+        @ComponentScan("com.softserve.academy.electronicservice.service")})
 
 public class AppConfig {
 

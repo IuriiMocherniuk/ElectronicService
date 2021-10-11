@@ -10,7 +10,6 @@ public class Owner {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "owner_id")
     private long id;
 
     @Column(name = "first_name")
@@ -19,16 +18,22 @@ public class Owner {
     @Column(name = "last_name")
     private String lastName;
 
-    private String fullName = firstName +" " + lastName;
+//    private String fullName = firstName +" " + lastName;
 
     private String password;
 
     @Column(name = "create_date")
     private LocalDateTime createdDate;
 
-    @MapsId
+    //?
+   // @MapsId
     @OneToMany(mappedBy = "owner")
-    private List<Owner> deviceList;
+
+    private List<Device> deviceList;
+
+    public Owner() {
+
+    }
 
     public long getId() {
         return id;
@@ -54,13 +59,13 @@ public class Owner {
         this.lastName = lastName;
     }
 
-    public String getFullName() {
-        return fullName;
-    }
+//    public String getFullName() {
+//        return fullName;
+//    }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
+//    public void setFullName(String fullName) {
+//        this.fullName = fullName;
+//    }
 
     public String getPassword() {
         return password;
@@ -78,11 +83,11 @@ public class Owner {
         this.createdDate = createdDate;
     }
 
-    public List<Owner> getDeviceList() {
+    public List<Device> getDeviceList() {
         return deviceList;
     }
 
-    public void setDeviceList(List<Owner> deviceList) {
+    public void setDeviceList(List<Device> deviceList) {
         this.deviceList = deviceList;
     }
 
@@ -93,9 +98,6 @@ public class Owner {
         this.createdDate = LocalDateTime.now();
     }
 
-    public Owner() {
-
-    }
 
     @Override
     public String toString() {
