@@ -2,7 +2,9 @@ package com.softserve.academy.electronicservice.model;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "owners")
@@ -26,14 +28,22 @@ public class Owner {
     private LocalDateTime createdDate;
 
     //?
-   // @MapsId
+    // @MapsId
     @OneToMany(mappedBy = "owner")
-
     private List<Device> deviceList;
 
     public Owner() {
-
     }
+
+    public Owner(String firstName, String lastName, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+        this.createdDate = LocalDateTime.now();
+    }
+
+
+
 
     public long getId() {
         return id;
@@ -91,13 +101,22 @@ public class Owner {
         this.deviceList = deviceList;
     }
 
-    public Owner(String firstName, String lastName, String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.password = password;
-        this.createdDate = LocalDateTime.now();
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Owner owner = (Owner) o;
+        return id == owner.id
+                && Objects.equals(firstName, owner.firstName)
+                && Objects.equals(lastName, owner.lastName)
+                && Objects.equals(password, owner.password)
+                && Objects.equals(createdDate.truncatedTo(ChronoUnit.SECONDS), owner.createdDate.truncatedTo(ChronoUnit.SECONDS));
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName, lastName, password, createdDate);
+    }
 
     @Override
     public String toString() {

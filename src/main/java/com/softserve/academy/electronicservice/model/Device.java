@@ -1,6 +1,7 @@
 package com.softserve.academy.electronicservice.model;
 
 import javax.persistence.*;
+
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -14,12 +15,13 @@ public class Device {
 
     private String type;
     private String name;
-    private Long code;
+    private long code;
 
     @ManyToOne
     //TODO CHECK
     @JoinColumn(name = "owner_id", referencedColumnName = "id")
     private Owner owner;
+//    private Owner owner;
 
     private String status;
 
@@ -29,12 +31,25 @@ public class Device {
     @Column(name = "update_date")
     private LocalDateTime updateDate;
 
+    public Device(String type, String name, long code, Owner owner, String status) {
+        this.type = type;
+        this.name = name;
+        this.code = code;
+        this.owner = owner;
+        this.status = status;
+        this.createdDate = LocalDateTime.now();
+    }
+
+    public Device() {
+
+    }
+
     public long getId() {
         return id;
     }
 
     public void setId(long id) {
-        this.id = id;
+        this.id = id ;
     }
 
     public String getType() {
@@ -53,11 +68,11 @@ public class Device {
         this.name = mane;
     }
 
-    public Long getCode() {
+    public long getCode() {
         return code;
     }
 
-    public void setCode(Long code) {
+    public void setCode(long code) {
         this.code = code;
     }
 

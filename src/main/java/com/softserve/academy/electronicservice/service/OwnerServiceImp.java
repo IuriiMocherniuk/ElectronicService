@@ -22,17 +22,20 @@ public class OwnerServiceImp implements OwnerService{
     @Transactional
     @Override
     public long save(Owner owner) {
-        return ownerDao.save(owner);
+
+      return ownerDao.save(owner);
+
     }
 
     @Override
     public Owner get(long id) {
+
         return ownerDao.get(id);
     }
 
     @Override
     public List<Owner> list() {
-        return ownerDao.list();
+        return ownerDao.getAll();
     }
 
     @Transactional

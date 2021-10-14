@@ -28,7 +28,6 @@ public class OwnerDaoImp implements OwnerDao {
     public long save(Owner owner) {
         sessionFactory.getCurrentSession().save(owner);
         return owner.getId();
-
     }
 
     @Override
@@ -38,7 +37,7 @@ public class OwnerDaoImp implements OwnerDao {
     }
 
     @Override
-    public List<Owner> list() {
+    public List<Owner> getAll() {
         Session session = sessionFactory.getCurrentSession();
         CriteriaBuilder cb = session.getCriteriaBuilder();
         CriteriaQuery<Owner> cq = cb.createQuery(Owner.class);

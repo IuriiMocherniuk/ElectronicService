@@ -46,12 +46,8 @@ dependencies {
     // https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-catalina
     implementation group: 'org.apache.tomcat', name: 'tomcat-catalina', version: '10.1.0-M6'
 
-
     // https://mvnrepository.com/artifact/org.springframework/spring-orm
     implementation group: 'org.springframework', name: 'spring-orm', version: '5.3.9'
-
-
-
 
     // https://mvnrepository.com/artifact/org.springframework/org.springframework.orm
     //implementation group: 'org.springframework', name: 'org.springframework.orm', version: '3.2.2.RELEASE'
@@ -59,12 +55,22 @@ dependencies {
     //implementation 'org.hibernate:hibernate-core-jakarta:5.5.7.Final'
     implementation 'org.glassfish.jaxb:jaxb-runtime:3.0.0'
 
+    // https://mvnrepository.com/artifact/org.testng/testng
 
+    testImplementation group: 'org.testng', name: 'testng', version: '7.4.0'
 
+    // https://mvnrepository.com/artifact/org.mockito/mockito-all
+    testImplementation group: 'org.mockito', name: 'mockito-all', version: '1.10.19'
 
+// https://mvnrepository.com/artifact/org.assertj/assertj-core
+    testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.21.0'
 
 }
 
 test {
-    useJUnitPlatform()
+    useTestNG()
 }
+
+//test {
+//    useJUnitPlatform()
+//}
