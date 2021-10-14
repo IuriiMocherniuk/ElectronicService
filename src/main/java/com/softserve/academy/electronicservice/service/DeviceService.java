@@ -10,7 +10,7 @@ public interface DeviceService {
 
         Device get(long id);
 
-        List<Device> list();
+        List<Device> getAll();
 
         void update(long id, Device device);
 

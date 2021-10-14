@@ -32,11 +32,12 @@ public class DeviceDaoImp implements DeviceDao {
 
     @Override
     public Device get(long id) {
+
         return sessionFactory.getCurrentSession().get(Device.class, id);
     }
 
     @Override
-    public List<Device> list() {
+    public List<Device> getAll() {
         Session session = sessionFactory.getCurrentSession();
         CriteriaBuilder cb = session.getCriteriaBuilder();
         CriteriaQuery<Device> cq = cb.createQuery(Device.class);
@@ -54,7 +55,7 @@ public class DeviceDaoImp implements DeviceDao {
         device2.setType(device.getType());
         device2.setName(device.getName());
         device2.setCode(device.getCode());
-        device2.setOwner(device.getOwner());
+        device2.setOwnerId(device.getOwnerId());
         device2.setStatus(device.getStatus());
         device2.setUpdateDate(device.getUpdateDate());
             session.flush();

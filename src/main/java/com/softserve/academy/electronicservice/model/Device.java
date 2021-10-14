@@ -3,6 +3,7 @@ package com.softserve.academy.electronicservice.model;
 import javax.persistence.*;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
 @Entity
@@ -17,11 +18,15 @@ public class Device {
     private String name;
     private long code;
 
-    @ManyToOne
-    //TODO CHECK
+//    @OneToMany   //TODO CHECK
     @JoinColumn(name = "owner_id", referencedColumnName = "id")
+    @Column(name = "owner_id")
+    private long ownerId;
+
+
+    @ManyToOne   //TODO CHECK
+    @JoinColumn(name = "owner_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Owner owner;
-//    private Owner owner;
 
     private String status;
 
@@ -31,11 +36,11 @@ public class Device {
     @Column(name = "update_date")
     private LocalDateTime updateDate;
 
-    public Device(String type, String name, long code, Owner owner, String status) {
+    public Device(String type, String name, long code, long ownerId, String status) {
         this.type = type;
         this.name = name;
         this.code = code;
-        this.owner = owner;
+        this.ownerId = ownerId;
         this.status = status;
         this.createdDate = LocalDateTime.now();
     }
@@ -49,7 +54,7 @@ public class Device {
     }
 
     public void setId(long id) {
-        this.id = id ;
+        this.id = id;
     }
 
     public String getType() {
@@ -84,6 +89,14 @@ public class Device {
         this.owner = owner;
     }
 
+    public long getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(long ownerId) {
+        this.ownerId = ownerId;
+    }
+
     public String getStatus() {
         return status;
     }
@@ -108,18 +121,37 @@ public class Device {
         this.updateDate = updateDate;
     }
 
-
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Device device = (Device) o;
-        return Objects.equals(type, device.type) && Objects.equals(name, device.name) && Objects.equals(code, device.code) && Objects.equals(owner, device.owner) && Objects.equals(status, device.status);
+        return id == device.id
+                && code == device.code
+                && ownerId == device.ownerId
+                && Objects.equals(type, device.type)
+                && Objects.equals(name, device.name)
+                && Objects.equals(status, device.status)
+                && Objects.equals(createdDate.truncatedTo(ChronoUnit.SECONDS), device.createdDate.truncatedTo(ChronoUnit.SECONDS));
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(type, name, code, owner, status);
+        return Objects.hash(id, type, name, code, ownerId, status, createdDate);
+    }
+
+    @Override
+    public String toString() {
+        return "Device{" +
+                "id=" + id +
+                ", type='" + type + '\'' +
+                ", name='" + name + '\'' +
+                ", code=" + code +
+                ", ownerId=" + ownerId +
+                ", owner=" + owner +
+                ", status='" + status + '\'' +
+                ", createdDate=" + createdDate +
+                ", updateDate=" + updateDate +
+                '}';
     }
 }

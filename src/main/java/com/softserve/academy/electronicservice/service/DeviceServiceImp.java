@@ -31,8 +31,8 @@ public class DeviceServiceImp implements DeviceService {
     }
 
     @Override
-    public List<Device> list() {
-        return deviceDao.list();
+    public List<Device> getAll() {
+        return deviceDao.getAll();
     }
 
     @Override

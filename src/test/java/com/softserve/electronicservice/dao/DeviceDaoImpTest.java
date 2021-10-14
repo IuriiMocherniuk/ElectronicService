@@ -28,55 +28,56 @@ public class DeviceDaoImpTest {
         deviceDao = applicationContext.getBean(DeviceDao.class);
     }
 
-//    @Test
-//    public void saveTest() {
-//        Owner owner = new Owner("Ivan", "Ivanov",UUID.randomUUID().toString());
-//        Device device = new Device("Phone", "iPhone", 1111_222_333_444L,owner,"" );
-//        long id = deviceDao.save(device);
-//        Device device1 = deviceDao.get(id);
-//        assertEquals(device, device1);
-//        //delete(id);
-//    }
+    @Test
+    public void saveTest() {
+        Device device = new Device("Phone", "iPhone", 1111_222_333_444L,1,"used" );
+        long id = deviceDao.save(device);
+        Device device1 = deviceDao.get(id);
+        assertEquals(device, device1);
+        delete(id);
+    }
 
-//    @Test
-//    public void updateTest() {
-//        Owner owner = new Owner("Ivan", "Ivanov",UUID.randomUUID().toString());
-//        long id = ownerDao.save(owner);
-//        Owner actualOwner = ownerDao.get(id);
-//        actualOwner.setFirstName("Pepro");
-//        ownerDao.update(id,actualOwner);
-//        Owner ownerUpdate = ownerDao.get(id);
-//        assertEquals(actualOwner, ownerUpdate);
-//        delete(id);
-//    }
-//
-//    @Test
-//    public void deleteTest() {
-//        Owner owner = new Owner("Ivan", "Ivanov",UUID.randomUUID().toString());
-//        long id = ownerDao.save(owner);
-//        Owner actualOwner = ownerDao.get(id);
-//        assertEquals(owner, actualOwner);
-//        delete(id);
-//        Owner deleteOwner = ownerDao.get(id);
-//        assertNull(deleteOwner);
-//    }
-//
-//    @Test
-//    public void getAllTest() {
-//        Owner owner1 = new Owner("Ivan", "Ivanov",UUID.randomUUID().toString());
-//        Owner owner2 = new Owner("Ivan", "Ivanov", UUID.randomUUID().toString());
-//        long id1 = ownerDao.save(owner1);
-//        long id2 = ownerDao.save(owner2);
-//        List<Owner> actualList = ownerDao.getAll();
-//        assertThat(actualList)
-//                .isNotNull()
-//                .isNotEmpty()
-//                .hasSizeGreaterThan(1)
-//                .contains(owner1,owner2);
-//        delete(id1,id2);
-//
-//    }
-//
+    @Test
+    public void updateTest() {
+        Device device = new Device("Phone", "iPhone", 1111_222_333_444L,1,"used" );
+        long id = deviceDao.save(device);
+        Device actualDevice = deviceDao.get(id);
+        actualDevice.setOwnerId(2);
+        deviceDao.update(id,actualDevice);
+        Device deviceUpdate = deviceDao.get(id);
+        assertEquals(actualDevice, deviceUpdate);
+        delete(id);
+    }
+
+    @Test
+    public void deleteTest() {
+        Device device = new Device("Phone", "iPhone", 1111_222_333_444L,1,"used" );
+        long id = deviceDao.save(device);
+        Device actualDevice = deviceDao.get(id);
+        assertEquals(device, actualDevice);
+        delete(id);
+        Device deleteDevice = deviceDao.get(id);
+        assertNull(deleteDevice);
+    }
+
+    @Test
+    public void getAllTest() {
+
+
+        Device device1 = new Device("Phone", "iPhone", 1111_222_333_444L,1,"used" );
+        Device device2 = new Device("Phone", "iPhone", 1111_222_333_444L,1,"used" );
+        long id1 = deviceDao.save(device1);
+        long id2 = deviceDao.save(device2);
+        List<Device> actualList = deviceDao.getAll();
+        assertThat(actualList)
+                .isNotNull()
+                .isNotEmpty()
+                .hasSizeGreaterThan(1)
+                .contains(device1,device2);
+        delete(id1,id2);
+
+    }
+
     private void delete(long... ids) {
         Arrays.stream(ids).forEach(deviceDao::delete);
     }

@@ -45,7 +45,7 @@ public class DeviceController {
     /*---get all owners---*/
     @GetMapping("/device")
     public ResponseEntity<List<Device>> list() {
-        List<Device> devices = deviceService.list();
+        List<Device> devices = deviceService.getAll();
         return ResponseEntity.ok().body(devices);
     }
 

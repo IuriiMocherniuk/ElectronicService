@@ -33,7 +33,6 @@ public class OwnerDaoImp implements OwnerDao {
     @Override
     public Owner get(long id) {
         return sessionFactory.getCurrentSession().get(Owner.class, id);
-        //return new Owner("Ivan", "Ivanov", "password1");
     }
 
     @Override
@@ -55,7 +54,6 @@ public class OwnerDaoImp implements OwnerDao {
         owner2.setFirstName(owner.getFirstName());
         owner2.setPassword(owner.getPassword());
         session.flush();
-
     }
 
     @Override
@@ -63,6 +61,5 @@ public class OwnerDaoImp implements OwnerDao {
         Session session = sessionFactory.getCurrentSession();
         Owner book = session.byId(Owner.class).load(id);
         session.delete(book);
-
     }
 }
