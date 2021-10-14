@@ -8,14 +8,14 @@ import java.util.List;
 @Repository
 public interface OwnerDao {
 
-       long save(Owner owner);
+    long save(Owner owner);
 
-        Owner get(long id);
+    Owner get(long id);
 
-        List<Owner> getAll();
+    List<Owner> getAll();
 
-        void update(long id, Owner owner);
+    void update(long id, Owner owner);
 
-        void delete(long id);
+    void delete(long id);
 
 }

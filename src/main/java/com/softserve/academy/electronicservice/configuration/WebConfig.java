@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = { "com.softserve.academy.electronicservice.controller" })
+@ComponentScan(basePackages = {"com.softserve.academy.electronicservice.controller"})
 public class WebConfig implements WebMvcConfigurer {
 
     @Override

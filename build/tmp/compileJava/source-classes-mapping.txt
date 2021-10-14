@@ -4,8 +4,6 @@ com/softserve/academy/electronicservice/dao/DeviceDaoImp.java
  com.softserve.academy.electronicservice.dao.DeviceDaoImp
 com/softserve/academy/electronicservice/model/Owner.java
  com.softserve.academy.electronicservice.model.Owner
-com/softserve/academy/electronicservice/Main.java
- com.softserve.academy.electronicservice.Main
 com/softserve/academy/electronicservice/controller/DeviceController.java
  com.softserve.academy.electronicservice.controller.DeviceController
 com/softserve/academy/electronicservice/controller/OwnerController.java

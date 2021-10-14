@@ -14,7 +14,7 @@ public class DeviceServiceImp implements DeviceService {
 
     private final DeviceDao deviceDao;
 
-   @Autowired
+    @Autowired
     public DeviceServiceImp(DeviceDao deviceDao) {
         this.deviceDao = deviceDao;
     }

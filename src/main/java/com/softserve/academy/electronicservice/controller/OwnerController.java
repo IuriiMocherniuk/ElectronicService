@@ -5,14 +5,7 @@ import com.softserve.academy.electronicservice.model.Owner;
 import com.softserve.academy.electronicservice.service.OwnerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,7 +23,7 @@ public class OwnerController {
     /*---Add new owner---*/
     @PostMapping("/owner")
     public ResponseEntity<?> save(@RequestBody Owner owner) {
-        System.out.println("the json value of owner is :::::: "+owner);
+        System.out.println("the json value of owner is :::::: " + owner);
         long id = ownerService.save(owner);
         return ResponseEntity.ok().body("New Owner has been saved with ID:" + id);
     }
@@ -45,7 +38,7 @@ public class OwnerController {
     /*---get all owners---*/
     @GetMapping("/owner")
     public ResponseEntity<List<Owner>> list() {
-        List<Owner> owners = ownerService.list();
+        List<Owner> owners = ownerService.getAll();
         return ResponseEntity.ok().body(owners);
     }
 

@@ -9,7 +9,7 @@ public interface OwnerService {
 
     Owner get(long id);
 
-    List<Owner> list();
+    List<Owner> getAll();
 
     void update(long id, Owner owner);
 

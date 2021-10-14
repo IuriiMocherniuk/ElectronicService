@@ -32,7 +32,6 @@ public class DeviceDaoImp implements DeviceDao {
 
     @Override
     public Device get(long id) {
-
         return sessionFactory.getCurrentSession().get(Device.class, id);
     }
 
@@ -58,14 +57,14 @@ public class DeviceDaoImp implements DeviceDao {
         device2.setOwnerId(device.getOwnerId());
         device2.setStatus(device.getStatus());
         device2.setUpdateDate(device.getUpdateDate());
-            session.flush();
+        session.flush();
     }
 
     @Override
     public void delete(long id) {
-    Session session = sessionFactory.getCurrentSession();
-    Device device = session.byId(Device.class).load(id);
-    session.delete(device);
+        Session session = sessionFactory.getCurrentSession();
+        Device device = session.byId(Device.class).load(id);
+        session.delete(device);
     }
 
 }

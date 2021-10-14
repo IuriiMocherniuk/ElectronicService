@@ -1,13 +1,12 @@
 package com.softserve.academy.electronicservice.model;
 
 import javax.persistence.*;
-
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
 @Entity
-@Table (name = "devices")
+@Table(name = "devices")
 public class Device {
 
     @Id
@@ -18,7 +17,7 @@ public class Device {
     private String name;
     private long code;
 
-//    @OneToMany   //TODO CHECK
+    //    @OneToMany   //TODO CHECK
     @JoinColumn(name = "owner_id", referencedColumnName = "id")
     @Column(name = "owner_id")
     private long ownerId;

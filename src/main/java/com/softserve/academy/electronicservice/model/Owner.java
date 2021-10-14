@@ -43,8 +43,6 @@ public class Owner {
     }
 
 
-
-
     public long getId() {
         return id;
     }

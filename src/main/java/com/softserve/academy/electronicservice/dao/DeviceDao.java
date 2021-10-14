@@ -8,14 +8,14 @@ import java.util.List;
 @Repository
 public interface DeviceDao {
 
-       long save(Device device);
+    long save(Device device);
 
-        Device get(long id);
+    Device get(long id);
 
-        List<Device> getAll();
+    List<Device> getAll();
 
-        void update(long id, Device device);
+    void update(long id, Device device);
 
-        void delete(long id);
+    void delete(long id);
 
 }

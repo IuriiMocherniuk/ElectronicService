@@ -10,7 +10,7 @@ import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
-public class OwnerServiceImp implements OwnerService{
+public class OwnerServiceImp implements OwnerService {
 
     private final OwnerDao ownerDao;
 
@@ -22,19 +22,17 @@ public class OwnerServiceImp implements OwnerService{
     @Transactional
     @Override
     public long save(Owner owner) {
-
-      return ownerDao.save(owner);
-
+        return ownerDao.save(owner);
     }
 
     @Override
     public Owner get(long id) {
-
         return ownerDao.get(id);
     }
 
     @Override
-    public List<Owner> list() {
+    public List<Owner> getAll() {
+
         return ownerDao.getAll();
     }
 
@@ -42,7 +40,6 @@ public class OwnerServiceImp implements OwnerService{
     @Override
     public void update(long id, Owner owner) {
         ownerDao.update(id, owner);
-
     }
 
     @Transactional
