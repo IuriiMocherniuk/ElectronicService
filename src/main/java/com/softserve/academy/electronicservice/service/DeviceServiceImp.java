@@ -36,8 +36,9 @@ public class DeviceServiceImp implements DeviceService {
     }
 
     @Override
-    public void update(long id, Device device) {
+    public Device update(long id, Device device) {
         deviceDao.update(id, device);
+        return device;
     }
 
     @Override

@@ -20,11 +20,11 @@ public class DeviceController {
     }
 
     /*---Add new device---*/
-    @PostMapping("/device")
+    @PostMapping("/device/add")
     public ResponseEntity<?> save(@RequestBody Device device) {
         System.out.println("the json value of device is :::::: " + device);
         long id = deviceService.save(device);
-        return ResponseEntity.ok().body("New Device has been saved with ID:" + id);
+        return ResponseEntity.ok().body("New Device has been created with ID:" + id);
     }
 
     /*---Get a owner by id---*/
@@ -36,7 +36,7 @@ public class DeviceController {
 
     /*---get all owners---*/
     @GetMapping("/device")
-    public ResponseEntity<List<Device>> list() {
+    public ResponseEntity<List<Device>> getAll() {
         List<Device> devices = deviceService.getAll();
         return ResponseEntity.ok().body(devices);
     }
@@ -45,14 +45,14 @@ public class DeviceController {
     @PutMapping("/device/{id}")
     public ResponseEntity<?> update(@PathVariable("id") long id, @RequestBody Device device) {
         deviceService.update(id, device);
-        return ResponseEntity.ok().body("Device has been updated successfully.");
+        return ResponseEntity.ok().body("Device with Id = "+ device.getId()+" has been updated successfully.");
     }
 
     /*---Delete a owner by id---*/
     @DeleteMapping("/device/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") long id) {
         deviceService.delete(id);
-        return ResponseEntity.ok().body("Device has been deleted successfully.");
+        return ResponseEntity.ok().body("Device with Id = "+ id+" has been deleted successfully.");
     }
 
 

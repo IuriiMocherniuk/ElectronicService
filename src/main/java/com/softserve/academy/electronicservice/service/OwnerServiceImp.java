@@ -38,8 +38,9 @@ public class OwnerServiceImp implements OwnerService {
 
     @Transactional
     @Override
-    public void update(long id, Owner owner) {
+    public Owner update(long id, Owner owner) {
         ownerDao.update(id, owner);
+        return owner;
     }
 
     @Transactional

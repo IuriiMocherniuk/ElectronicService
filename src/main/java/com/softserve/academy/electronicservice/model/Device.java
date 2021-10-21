@@ -1,5 +1,11 @@
 package com.softserve.academy.electronicservice.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
@@ -25,13 +31,16 @@ public class Device {
 
     @ManyToOne   //TODO CHECK
     @JoinColumn(name = "owner_id", referencedColumnName = "id", insertable = false, updatable = false)
+    @JsonIgnore
     private Owner owner;
 
     private String status;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     @Column(name = "create_date")
     private LocalDateTime createdDate;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     @Column(name = "update_date")
     private LocalDateTime updateDate;
 
@@ -42,6 +51,15 @@ public class Device {
         this.ownerId = ownerId;
         this.status = status;
         this.createdDate = LocalDateTime.now();
+    }
+
+    public Device(long id, String type, String name, long code, long ownerId, String status) {
+        this.id = id;
+        this.type = type;
+        this.name = name;
+        this.code = code;
+        this.ownerId = ownerId;
+        this.status = status;
     }
 
     public Device() {

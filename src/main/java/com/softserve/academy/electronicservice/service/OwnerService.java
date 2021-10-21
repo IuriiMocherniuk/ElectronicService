@@ -5,13 +5,14 @@ import com.softserve.academy.electronicservice.model.Owner;
 import java.util.List;
 
 public interface OwnerService {
-    long save(Owner book);
+
+    long save(Owner owner);
 
     Owner get(long id);
 
     List<Owner> getAll();
 
-    void update(long id, Owner owner);
+    Owner update(long id, Owner owner);
 
     void delete(long id);
 }

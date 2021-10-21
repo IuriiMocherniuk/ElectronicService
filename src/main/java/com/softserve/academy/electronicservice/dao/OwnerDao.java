@@ -2,6 +2,7 @@ package com.softserve.academy.electronicservice.dao;
 
 import com.softserve.academy.electronicservice.model.Owner;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -14,7 +15,7 @@ public interface OwnerDao {
 
     List<Owner> getAll();
 
-    void update(long id, Owner owner);
+    Owner update(long id, Owner owner);
 
     void delete(long id);
 

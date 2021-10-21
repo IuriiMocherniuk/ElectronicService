@@ -12,7 +12,7 @@ public interface DeviceService {
 
         List<Device> getAll();
 
-        void update(long id, Device device);
+        Device update(long id, Device device);
 
         void delete(long id);
 

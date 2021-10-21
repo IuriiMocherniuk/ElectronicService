@@ -14,6 +14,7 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 @Transactional
+// TODO Change test dao layer
 @Repository
 public class DeviceDaoImp implements DeviceDao {
 
@@ -48,7 +49,7 @@ public class DeviceDaoImp implements DeviceDao {
     }
 
     @Override
-    public void update(long id, Device device) {
+    public Device update(long id, Device device) {
         Session session = sessionFactory.getCurrentSession();
         Device device2 = session.byId(Device.class).load(id);
         device2.setType(device.getType());
@@ -58,6 +59,7 @@ public class DeviceDaoImp implements DeviceDao {
         device2.setStatus(device.getStatus());
         device2.setUpdateDate(device.getUpdateDate());
         session.flush();
+        return device2;
     }
 
     @Override

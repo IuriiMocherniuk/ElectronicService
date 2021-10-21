@@ -6,14 +6,17 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import java.io.Serializable;
 import java.util.List;
 
 @Transactional
+// TODO Change test dao layer
 @Repository
 public class OwnerDaoImp implements OwnerDao {
 
@@ -26,8 +29,7 @@ public class OwnerDaoImp implements OwnerDao {
 
     @Override
     public long save(Owner owner) {
-        sessionFactory.getCurrentSession().save(owner);
-        return owner.getId();
+        return  (Long) sessionFactory.getCurrentSession().save(owner);
     }
 
     @Override
@@ -47,13 +49,14 @@ public class OwnerDaoImp implements OwnerDao {
     }
 
     @Override
-    public void update(long id, Owner owner) {
+    public Owner update(long id, Owner owner) {
         Session session = sessionFactory.getCurrentSession();
         Owner owner2 = session.byId(Owner.class).load(id);
         owner2.setFirstName(owner.getFirstName());
         owner2.setFirstName(owner.getFirstName());
         owner2.setPassword(owner.getPassword());
         session.flush();
+        return owner;
     }
 
     @Override

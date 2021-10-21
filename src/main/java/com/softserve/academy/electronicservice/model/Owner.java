@@ -1,5 +1,8 @@
 package com.softserve.academy.electronicservice.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
@@ -20,16 +23,16 @@ public class Owner {
     @Column(name = "last_name")
     private String lastName;
 
-//    private String fullName = firstName +" " + lastName;
-
+    @JsonIgnore
     private String password;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     @Column(name = "create_date")
     private LocalDateTime createdDate;
 
-    //?
-    // @MapsId
-    @OneToMany(mappedBy = "owner")
+
+    // TODO check fetch = FetchType.EAGER
+    @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
     private List<Device> deviceList;
 
     public Owner() {
@@ -42,6 +45,12 @@ public class Owner {
         this.createdDate = LocalDateTime.now();
     }
 
+    public Owner(long id, String firstName, String lastName, String password) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+    }
 
     public long getId() {
         return id;
@@ -67,14 +76,6 @@ public class Owner {
         this.lastName = lastName;
     }
 
-//    public String getFullName() {
-//        return fullName;
-//    }
-
-//    public void setFullName(String fullName) {
-//        this.fullName = fullName;
-//    }
-
     public String getPassword() {
         return password;
     }
@@ -90,6 +91,7 @@ public class Owner {
     public void setCreatedDate(LocalDateTime createdDate) {
         this.createdDate = createdDate;
     }
+
 
     public List<Device> getDeviceList() {
         return deviceList;
@@ -119,8 +121,10 @@ public class Owner {
     @Override
     public String toString() {
         return "Owner{" +
-                "firstName='" + firstName + '\'' +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
+                ", password='" + password + '\'' +
                 ", createdDate=" + createdDate +
                 '}';
     }
