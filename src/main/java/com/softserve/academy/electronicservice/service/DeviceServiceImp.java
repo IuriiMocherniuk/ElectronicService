@@ -21,8 +21,9 @@ public class DeviceServiceImp implements DeviceService {
 
     @Override
     @Transactional
-    public long save(Device device) {
-        return deviceDao.save(device);
+    public Device save(Device device) {
+        deviceDao.save(device);
+        return device;
     }
 
     @Override
@@ -35,12 +36,13 @@ public class DeviceServiceImp implements DeviceService {
         return deviceDao.getAll();
     }
 
+    @Transactional
     @Override
     public Device update(long id, Device device) {
-        deviceDao.update(id, device);
+       deviceDao.update(id, device);
         return device;
     }
-
+    @Transactional
     @Override
     public void delete(long id) {
         deviceDao.delete(id);

@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface OwnerDao {
 
-    long save(Owner owner);
+    Owner save(Owner owner);
 
     Owner get(long id);
 

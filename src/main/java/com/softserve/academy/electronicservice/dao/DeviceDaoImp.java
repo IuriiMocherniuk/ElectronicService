@@ -1,6 +1,7 @@
 package com.softserve.academy.electronicservice.dao;
 
 import com.softserve.academy.electronicservice.model.Device;
+import com.softserve.academy.electronicservice.model.Owner;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -13,7 +14,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
-@Transactional
+//@Transactional
 // TODO Change test dao layer
 @Repository
 public class DeviceDaoImp implements DeviceDao {
@@ -26,9 +27,9 @@ public class DeviceDaoImp implements DeviceDao {
     }
 
     @Override
-    public long save(Device device) {
-        sessionFactory.getCurrentSession().save(device);
-        return device.getId();
+    public Device save(Device device) {
+        long id = (long) sessionFactory.getCurrentSession().save(device);
+        return sessionFactory.getCurrentSession().get(Device.class, id);
     }
 
     @Override
@@ -55,11 +56,12 @@ public class DeviceDaoImp implements DeviceDao {
         device2.setType(device.getType());
         device2.setName(device.getName());
         device2.setCode(device.getCode());
-        device2.setOwnerId(device.getOwnerId());
+       // device2.setOwnerId(device.getOwnerId());
         device2.setStatus(device.getStatus());
-        device2.setUpdateDate(device.getUpdateDate());
+       // device2.setUpdateDate(device.getUpdateDate());
         session.flush();
-        return device2;
+        return sessionFactory.getCurrentSession().get(Device.class, id);
+//        return session.get(Device.class, id);
     }
 
     @Override
@@ -67,6 +69,7 @@ public class DeviceDaoImp implements DeviceDao {
         Session session = sessionFactory.getCurrentSession();
         Device device = session.byId(Device.class).load(id);
         session.delete(device);
+        session.flush();
     }
 
 }

@@ -40,9 +40,9 @@ public class OwnerServiceImpTest {
     public void saveTest() {
         long expectedId = 1;
         Owner owner = new Owner("Ivan", "Ivanov", "password");
-        when(ownerDao.save(owner)).thenReturn(expectedId);
-        long actualId = ownerService.save(owner);
-        assertEquals(expectedId, actualId);
+        when(ownerDao.save(owner)).thenReturn(owner);
+        Owner actualOwner = ownerService.save(owner);
+        assertEquals(owner, actualOwner);
         verify(ownerDao, times(1)).save(owner);
     }
 
@@ -59,7 +59,7 @@ public class OwnerServiceImpTest {
     public void deleteTest() {
         long expectedId = 1;
         Owner owner = new Owner("Ivan", "Ivanov", "password");
-        when(ownerDao.save(owner)).thenReturn(expectedId);
+        when(ownerDao.save(owner)).thenReturn(owner);
         doNothing().when(ownerDao).delete(expectedId);
         ownerService.delete(expectedId);
         verify(ownerDao, times(1)).delete(expectedId);

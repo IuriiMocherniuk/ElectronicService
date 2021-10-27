@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.softserve.academy.electronicservice.configuration.AppConfig;
 import com.softserve.academy.electronicservice.model.Owner;
 import com.softserve.academy.electronicservice.service.OwnerService;
+import org.hamcrest.Matcher;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -80,7 +81,7 @@ public class OwnerControllerTest {
     @Test
     public void getTest() throws Exception {
         String url = BASE_URL + "/" + expectedOwner.getId();
-        Mockito.when(ownerServiceMock.get(expectedOwner.getId())).thenReturn(expectedOwner);
+        Mockito.when(ownerServiceMock.get(1L)).thenReturn(expectedOwner);
         mockMvc.perform(MockMvcRequestBuilders.get(url))
                 .andExpect(content().string("{\"id\":1,\"firstName\":\"Ivan\",\"lastName\":\"Ivanov\"," +
                         "\"createdDate\":null,\"deviceList\":null}"))
@@ -92,12 +93,12 @@ public class OwnerControllerTest {
     public void saveTest() throws Exception {
 
         String url = BASE_URL + "/add";
-        Mockito.when(ownerServiceMock.save(any(Owner.class))).thenReturn(expectedOwner.getId());
+        Mockito.when(ownerServiceMock.save(any(Owner.class))).thenReturn(expectedOwner);
         String requestJson = objectMapper.writeValueAsString(expectedOwner);
         mockMvc.perform(MockMvcRequestBuilders.post(url).contentType(APPLICATION_JSON_UTF8)
                 .content(requestJson))
                 .andExpect(status().isOk())
-                .andExpect(content().string("New Owner has been created with ID:" + expectedOwner.getId()));
+                .andExpect(content().string("{\"id\":1,\"firstName\":\"Ivan\",\"lastName\":\"Ivanov\",\"createdDate\":null,\"deviceList\":null}"));
         Mockito.verify(ownerServiceMock, Mockito.times(1)).save(any(Owner.class));
     }
 
@@ -109,7 +110,7 @@ public class OwnerControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.put(url).contentType(APPLICATION_JSON_UTF8)
                 .content(requestJson))
                 .andExpect(status().isOk())
-                .andExpect(content().string("Owner with Id = 1 has been updated successfully."));
+                .andExpect(content().string("{\"id\":1,\"firstName\":\"Ivan\",\"lastName\":\"Ivanov\",\"createdDate\":null,\"deviceList\":null}"));
         Mockito.verify(ownerServiceMock, Mockito.times(1)).update(eq(1L), any(Owner.class));
     }
 

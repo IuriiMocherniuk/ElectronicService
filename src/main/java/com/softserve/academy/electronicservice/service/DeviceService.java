@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface DeviceService {
 
-        long save(Device device);
+        Device save(Device device);
 
         Device get(long id);
 

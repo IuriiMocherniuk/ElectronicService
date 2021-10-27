@@ -94,7 +94,7 @@ public class DeviceControllerTest {
     public void saveTest() throws Exception {
 
         String url = BASE_URL + "/add";
-        Mockito.when(deviceServiceMock.save(any(Device.class))).thenReturn(expectedDevice.getId());
+        Mockito.when(deviceServiceMock.save(any(Device.class))).thenReturn(expectedDevice);
         String requestJson = objectMapper.writeValueAsString(expectedDevice);
         mockMvc.perform(MockMvcRequestBuilders.post(url).contentType(APPLICATION_JSON_UTF8)
                 .content(requestJson))
@@ -111,7 +111,7 @@ public class DeviceControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.put(url).contentType(APPLICATION_JSON_UTF8)
                 .content(requestJson))
                 .andExpect(status().isOk())
-                .andExpect(content().string("Device with Id = 1 has been updated successfully."));
+                .andExpect(content().string("{\"id\":1,\"type\":\"Phone\",\"name\":\"iPhone\",\"code\":1111222333555,\"ownerId\":1,\"status\":\"used\",\"createdDate\":null,\"updateDate\":null}"));
         Mockito.verify(deviceServiceMock, Mockito.times(1)).update(eq(1L), any(Device.class));
     }
 

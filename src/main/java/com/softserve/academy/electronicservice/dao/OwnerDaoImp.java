@@ -15,7 +15,7 @@ import javax.persistence.criteria.Root;
 import java.io.Serializable;
 import java.util.List;
 
-@Transactional
+//@Transactional
 // TODO Change test dao layer
 @Repository
 public class OwnerDaoImp implements OwnerDao {
@@ -28,8 +28,9 @@ public class OwnerDaoImp implements OwnerDao {
     }
 
     @Override
-    public long save(Owner owner) {
-        return  (Long) sessionFactory.getCurrentSession().save(owner);
+    public Owner save(Owner owner) {
+       long id = (long) sessionFactory.getCurrentSession().save(owner);
+        return sessionFactory.getCurrentSession().get(Owner.class, id);
     }
 
     @Override
@@ -53,16 +54,18 @@ public class OwnerDaoImp implements OwnerDao {
         Session session = sessionFactory.getCurrentSession();
         Owner owner2 = session.byId(Owner.class).load(id);
         owner2.setFirstName(owner.getFirstName());
-        owner2.setFirstName(owner.getFirstName());
+        owner2.setLastName(owner.getLastName());
         owner2.setPassword(owner.getPassword());
         session.flush();
-        return owner;
+//        return owner;
+        return sessionFactory.getCurrentSession().get(Owner.class, id);
     }
 
     @Override
     public void delete(long id) {
         Session session = sessionFactory.getCurrentSession();
-        Owner book = session.byId(Owner.class).load(id);
-        session.delete(book);
+        Owner owner = session.byId(Owner.class).load(id);
+        session.delete(owner);
+        session.flush();
     }
 }

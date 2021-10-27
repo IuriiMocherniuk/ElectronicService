@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -20,26 +22,30 @@ public class Device {
     private long id;
 
     private String type;
+
     private String name;
+
     private long code;
 
-    //    @OneToMany   //TODO CHECK
+//    //    @OneToMany   //TODO CHECK
+//    @JoinColumn(name = "owner_id", referencedColumnName = "id")
+//    @Column(name = "owner_id")
+//    private long ownerId;
+
+//    @JsonIgnore
+    @ManyToOne
     @JoinColumn(name = "owner_id", referencedColumnName = "id")
-    @Column(name = "owner_id")
-    private long ownerId;
-
-
-    @ManyToOne   //TODO CHECK
-    @JoinColumn(name = "owner_id", referencedColumnName = "id", insertable = false, updatable = false)
-    @JsonIgnore
+//    @JoinColumn(name = "owner_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Owner owner;
 
     private String status;
 
+    @CreationTimestamp
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     @Column(name = "create_date")
     private LocalDateTime createdDate;
 
+    @UpdateTimestamp
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     @Column(name = "update_date")
     private LocalDateTime updateDate;
@@ -48,9 +54,8 @@ public class Device {
         this.type = type;
         this.name = name;
         this.code = code;
-        this.ownerId = ownerId;
+//        this.ownerId = ownerId;
         this.status = status;
-        this.createdDate = LocalDateTime.now();
     }
 
     public Device(long id, String type, String name, long code, long ownerId, String status) {
@@ -58,7 +63,7 @@ public class Device {
         this.type = type;
         this.name = name;
         this.code = code;
-        this.ownerId = ownerId;
+//        this.ownerId = ownerId;
         this.status = status;
     }
 
@@ -98,21 +103,23 @@ public class Device {
         this.code = code;
     }
 
+
     public Owner getOwner() {
         return owner;
     }
+
 
     public void setOwner(Owner owner) {
         this.owner = owner;
     }
 
-    public long getOwnerId() {
-        return ownerId;
-    }
-
-    public void setOwnerId(long ownerId) {
-        this.ownerId = ownerId;
-    }
+//    public long getOwnerId() {
+//        return ownerId;
+//    }
+//
+//    public void setOwnerId(long ownerId) {
+//        this.ownerId = ownerId;
+//    }
 
     public String getStatus() {
         return status;
@@ -145,7 +152,7 @@ public class Device {
         Device device = (Device) o;
         return id == device.id
                 && code == device.code
-                && ownerId == device.ownerId
+//                && ownerId == device.ownerId
                 && Objects.equals(type, device.type)
                 && Objects.equals(name, device.name)
                 && Objects.equals(status, device.status)
@@ -154,7 +161,7 @@ public class Device {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, type, name, code, ownerId, status, createdDate);
+        return Objects.hash(id, type, name, code,/* ownerId,*/ status, createdDate);
     }
 
     @Override
@@ -164,7 +171,7 @@ public class Device {
                 ", type='" + type + '\'' +
                 ", name='" + name + '\'' +
                 ", code=" + code +
-                ", ownerId=" + ownerId +
+//                ", ownerId=" + ownerId +
                 ", owner=" + owner +
                 ", status='" + status + '\'' +
                 ", createdDate=" + createdDate +

@@ -2,6 +2,8 @@ package com.softserve.academy.electronicservice.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -23,15 +25,14 @@ public class Owner {
     @Column(name = "last_name")
     private String lastName;
 
-    @JsonIgnore
     private String password;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
+    @CreationTimestamp
     @Column(name = "create_date")
     private LocalDateTime createdDate;
 
-
     // TODO check fetch = FetchType.EAGER
+    @JsonIgnore
     @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
     private List<Device> deviceList;
 
@@ -42,7 +43,7 @@ public class Owner {
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
-        this.createdDate = LocalDateTime.now();
+       // this.createdDate = LocalDateTime.now();
     }
 
     public Owner(long id, String firstName, String lastName, String password) {
@@ -76,10 +77,12 @@ public class Owner {
         this.lastName = lastName;
     }
 
+    @JsonIgnore
     public String getPassword() {
         return password;
     }
 
+    @JsonProperty
     public void setPassword(String password) {
         this.password = password;
     }
@@ -106,16 +109,12 @@ public class Owner {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Owner owner = (Owner) o;
-        return id == owner.id
-                && Objects.equals(firstName, owner.firstName)
-                && Objects.equals(lastName, owner.lastName)
-                && Objects.equals(password, owner.password)
-                && Objects.equals(createdDate.truncatedTo(ChronoUnit.SECONDS), owner.createdDate.truncatedTo(ChronoUnit.SECONDS));
+        return id == owner.id && Objects.equals(firstName, owner.firstName) && Objects.equals(lastName, owner.lastName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, password, createdDate);
+        return Objects.hash(id, firstName, lastName);
     }
 
     @Override

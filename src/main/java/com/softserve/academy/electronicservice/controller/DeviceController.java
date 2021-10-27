@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class DeviceController {
 
@@ -16,15 +16,16 @@ public class DeviceController {
 
     @Autowired
     public DeviceController(DeviceService deviceService) {
+
         this.deviceService = deviceService;
     }
 
     /*---Add new device---*/
     @PostMapping("/device/add")
-    public ResponseEntity<?> save(@RequestBody Device device) {
+    public ResponseEntity<Device> save(@RequestBody Device device) {
         System.out.println("the json value of device is :::::: " + device);
-        long id = deviceService.save(device);
-        return ResponseEntity.ok().body("New Device has been created with ID:" + id);
+        Device deviceAdd = deviceService.save(device);
+        return ResponseEntity.ok().body(deviceAdd);
     }
 
     /*---Get a owner by id---*/
@@ -44,8 +45,10 @@ public class DeviceController {
     /*---Update a owner by id---*/
     @PutMapping("/device/{id}")
     public ResponseEntity<?> update(@PathVariable("id") long id, @RequestBody Device device) {
-        deviceService.update(id, device);
-        return ResponseEntity.ok().body("Device with Id = "+ device.getId()+" has been updated successfully.");
+//       deviceService.update(id, device);
+       Device deviceUpdate =  deviceService.update(id, device);
+//        return ResponseEntity.ok().body(device);
+        return ResponseEntity.ok().body("Device has been updated: "+ deviceUpdate);
     }
 
     /*---Delete a owner by id---*/

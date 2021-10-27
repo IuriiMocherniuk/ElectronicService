@@ -59,32 +59,30 @@ import static org.testng.Assert.*;
         @Test
         public void saveTest() {
             Owner owner = new Owner("Ivan", "Ivanov", UUID.randomUUID().toString());
-            long id = ownerDao.save(owner);
-            Owner owner1 = ownerDao.get(id);
+            Owner owner1 = ownerDao.save(owner);
             assertEquals(owner, owner1);
-            delete(id);
+            delete(owner1.getId());
         }
 
         @Test
         public void updateTest() {
             Owner owner = new Owner("Ivan", "Ivanov", UUID.randomUUID().toString());
-            long id = ownerDao.save(owner);
-            Owner actualOwner = ownerDao.get(id);
+            Owner actualOwner = ownerDao.save(owner);
+           // Owner actualOwner = ownerDao.get(id);
             actualOwner.setFirstName("Pepro");
-            ownerDao.update(id, actualOwner);
-            Owner ownerUpdate = ownerDao.get(id);
+            Owner ownerUpdate = ownerDao.update(actualOwner.getId(), actualOwner);
             assertEquals(actualOwner, ownerUpdate);
-            delete(id);
+            delete(actualOwner.getId());
         }
 
         @Test
         public void deleteTest() {
             Owner owner = new Owner("Ivan", "Ivanov", UUID.randomUUID().toString());
-            long id = ownerDao.save(owner);
-            Owner actualOwner = ownerDao.get(id);
+
+            Owner actualOwner = ownerDao.save(owner);
             assertEquals(owner, actualOwner);
-            delete(id);
-            Owner deleteOwner = ownerDao.get(id);
+            delete(actualOwner.getId());
+            Owner deleteOwner = ownerDao.get(actualOwner.getId());
             assertNull(deleteOwner);
         }
 
@@ -92,15 +90,15 @@ import static org.testng.Assert.*;
         public void getAllTest() {
             Owner owner1 = new Owner("Ivan", "Ivanov", UUID.randomUUID().toString());
             Owner owner2 = new Owner("Ivan", "Ivanov", UUID.randomUUID().toString());
-            long id1 = ownerDao.save(owner1);
-            long id2 = ownerDao.save(owner2);
+            Owner ownerSaved1 = ownerDao.save(owner1);
+            Owner ownerSaved2  = ownerDao.save(owner2);
             List<Owner> actualList = ownerDao.getAll();
             assertThat(actualList)
                     .isNotNull()
                     .isNotEmpty()
                     .hasSizeGreaterThan(1)
                     .contains(owner1, owner2);
-            delete(id1, id2);
+            delete(ownerSaved1.getId(), ownerSaved2.getId());
         }
 
         private void delete(long... ids) {

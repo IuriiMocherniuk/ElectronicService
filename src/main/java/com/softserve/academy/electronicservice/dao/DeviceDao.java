@@ -8,7 +8,7 @@ import java.util.List;
 @Repository
 public interface DeviceDao {
 
-    long save(Device device);
+    Device save(Device device);
 
     Device get(long id);
 

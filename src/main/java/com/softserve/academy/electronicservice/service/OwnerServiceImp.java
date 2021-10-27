@@ -21,7 +21,7 @@ public class OwnerServiceImp implements OwnerService {
 
     @Transactional
     @Override
-    public long save(Owner owner) {
+    public Owner save(Owner owner) {
         return ownerDao.save(owner);
     }
 
