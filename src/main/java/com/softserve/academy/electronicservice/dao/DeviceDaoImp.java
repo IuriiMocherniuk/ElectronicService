@@ -49,6 +49,21 @@ public class DeviceDaoImp implements DeviceDao {
 
     }
 
+//    @Override
+//    public List<Device> getByOwner(Owner owner) {
+//        return null;
+//    }
+
+//    @Override
+//    public List<Device> getByOwner(Owner owner) {
+//        Session session = sessionFactory.getCurrentSession();
+//        CriteriaBuilder cb = session.getCriteriaBuilder();
+//        CriteriaQuery<Device> cq = cb.createQuery(Device.class);
+//        Root<Device> root = cq.from(Device.class);
+//        Query<Device> query = session.createQuery(cq);
+//        return query.getResultList(Device.class, owner);
+//    }
+
     @Override
     public Device update(long id, Device device) {
         Session session = sessionFactory.getCurrentSession();

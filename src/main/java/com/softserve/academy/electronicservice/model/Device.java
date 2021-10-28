@@ -27,7 +27,7 @@ public class Device {
 
     private long code;
 
-//    //    @OneToMany   //TODO CHECK
+//    //    @OneToMany
 //    @JoinColumn(name = "owner_id", referencedColumnName = "id")
 //    @Column(name = "owner_id")
 //    private long ownerId;
@@ -50,20 +50,20 @@ public class Device {
     @Column(name = "update_date")
     private LocalDateTime updateDate;
 
-    public Device(String type, String name, long code, long ownerId, String status) {
-        this.type = type;
-        this.name = name;
-        this.code = code;
-//        this.ownerId = ownerId;
-        this.status = status;
-    }
-
-    public Device(long id, String type, String name, long code, long ownerId, String status) {
+    public Device(long id, String type, String name, long code, Owner owner, String status) {
         this.id = id;
         this.type = type;
         this.name = name;
         this.code = code;
-//        this.ownerId = ownerId;
+        this.owner = owner;
+        this.status = status;
+    }
+
+    public Device(String type, String name, long code, Owner owner, String status) {
+        this.type = type;
+        this.name = name;
+        this.code = code;
+        this.owner = owner;
         this.status = status;
     }
 

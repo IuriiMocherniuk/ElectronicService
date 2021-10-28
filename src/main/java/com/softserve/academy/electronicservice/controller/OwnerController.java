@@ -1,6 +1,7 @@
 package com.softserve.academy.electronicservice.controller;
 
 import com.softserve.academy.electronicservice.model.Owner;
+import com.softserve.academy.electronicservice.dto.OwnerDetailsDTO;
 import com.softserve.academy.electronicservice.service.OwnerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -40,9 +41,9 @@ public class OwnerController {
     /*---Get a owner by id---*/
     @GetMapping("/owner/{id}")
 
-    public ResponseEntity<Owner> get(@PathVariable("id") long id) {
+    public ResponseEntity<OwnerDetailsDTO> get(@PathVariable("id") long id) {
         Owner owner = ownerService.get(id);
-        return ResponseEntity.ok().body(owner);
+        return ResponseEntity.ok().body(OwnerDetailsDTO.toOwnerDetail(owner));
     }
 
     /*---get all owners---*/

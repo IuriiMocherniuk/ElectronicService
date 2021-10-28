@@ -27,6 +27,7 @@ public class Owner {
 
     private String password;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     @CreationTimestamp
     @Column(name = "create_date")
     private LocalDateTime createdDate;
