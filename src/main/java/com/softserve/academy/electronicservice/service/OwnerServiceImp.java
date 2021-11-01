@@ -26,7 +26,7 @@ public class OwnerServiceImp implements OwnerService {
     }
 
     @Override
-    public Owner get(long id) {
+    public Owner get(Long id) {
         return ownerDao.get(id);
     }
 
@@ -38,7 +38,7 @@ public class OwnerServiceImp implements OwnerService {
 
     @Transactional
     @Override
-    public Owner update(long id, Owner owner) {
+    public Owner update(Long id, Owner owner) {
         if (owner.getPassword() == null) {
             owner.setPassword(get(id).getPassword());
         }
@@ -48,7 +48,7 @@ public class OwnerServiceImp implements OwnerService {
 
     @Transactional
     @Override
-    public void delete(long id) {
+    public void delete(Long id) {
         ownerDao.delete(id);
 
     }

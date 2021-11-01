@@ -8,11 +8,11 @@ public interface OwnerService {
 
     Owner save(Owner owner);
 
-    Owner get(long id);
+    Owner get(Long id);
 
     List<Owner> getAll();
 
-    Owner update(long id, Owner owner);
+    Owner update(Long id, Owner owner);
 
-    void delete(long id);
+    void delete(Long id);
 }

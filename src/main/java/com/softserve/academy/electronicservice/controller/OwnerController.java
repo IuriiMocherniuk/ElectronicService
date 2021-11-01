@@ -30,13 +30,13 @@ public class OwnerController {
     }
 
     @PutMapping("/owner/{id}")
-    public ResponseEntity<?> update(@PathVariable("id") long id, @RequestBody Owner owner) {
+    public ResponseEntity<?> update(@PathVariable("id") Long id, @RequestBody Owner owner) {
         Owner ownerUpdate = ownerService.update(id, owner);
         return ResponseEntity.ok().body("Owner has been created : " + ownerUpdate);
     }
 
     @GetMapping("/owner/{id}")
-    public ResponseEntity<OwnerDetailsDTO> get(@PathVariable("id") long id) {
+    public ResponseEntity<OwnerDetailsDTO> get(@PathVariable("id") Long id) {
         Owner owner = ownerService.get(id);
         return ResponseEntity.ok().body(OwnerDetailsDTO.toOwnerDetail(owner));
     }
@@ -48,7 +48,7 @@ public class OwnerController {
     }
 
     @DeleteMapping("/owner/{id}")
-    public ResponseEntity<?> delete(@PathVariable("id") long id) {
+    public ResponseEntity<?> delete(@PathVariable("id") Long id) {
         ownerService.delete(id);
         return ResponseEntity.ok().body("Owner with Id = " + id + " has been deleted successfully.");
     }

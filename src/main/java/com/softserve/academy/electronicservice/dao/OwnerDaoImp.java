@@ -27,12 +27,12 @@ public class OwnerDaoImp implements OwnerDao {
 
     @Override
     public Owner save(Owner owner) {
-       long id = (long) sessionFactory.getCurrentSession().save(owner);
+       Long id = (Long) sessionFactory.getCurrentSession().save(owner);
         return sessionFactory.getCurrentSession().get(Owner.class, id);
     }
 
     @Override
-    public Owner get(long id) {
+    public Owner get(Long id) {
         return sessionFactory.getCurrentSession().get(Owner.class, id);
     }
 
@@ -48,7 +48,7 @@ public class OwnerDaoImp implements OwnerDao {
     }
 
     @Override
-    public Owner update(long id, Owner owner) {
+    public Owner update(Long id, Owner owner) {
         Session session = sessionFactory.getCurrentSession();
         Owner owner2 = session.byId(Owner.class).load(id);
         owner2.setFirstName(owner.getFirstName());
@@ -59,7 +59,7 @@ public class OwnerDaoImp implements OwnerDao {
     }
 
     @Override
-    public void delete(long id) {
+    public void delete(Long id) {
         Session session = sessionFactory.getCurrentSession();
         Owner owner = session.byId(Owner.class).load(id);
         session.delete(owner);

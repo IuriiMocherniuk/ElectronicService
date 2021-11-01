@@ -11,12 +11,12 @@ public interface DeviceDao {
 
     Device save(Device device);
 
-    Device get(long id);
+    Device get(Long id);
 
     List<Device> getAll();
 
-    Device update(long id, Device device);
+    Device update(Long id, Device device);
 
-    void delete(long id);
+    void delete(Long id);
 
 }

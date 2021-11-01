@@ -28,7 +28,7 @@ public class DeviceController {
     }
 
     @GetMapping("/device/{id}")
-    public ResponseEntity<Device> get(@PathVariable("id") long id) {
+    public ResponseEntity<Device> get(@PathVariable("id") Long id) {
         Device device = deviceService.get(id);
         return ResponseEntity.ok().body(device);
     }
@@ -40,13 +40,13 @@ public class DeviceController {
     }
 
     @PutMapping("/device/{id}")
-    public ResponseEntity<?> update(@PathVariable("id") long id, @RequestBody Device device) {
+    public ResponseEntity<?> update(@PathVariable("id") Long id, @RequestBody Device device) {
         Device deviceUpdate = deviceService.update(id, device);
         return ResponseEntity.ok().body("Device has been updated: " + deviceUpdate);
     }
 
     @DeleteMapping("/device/{id}")
-    public ResponseEntity<?> delete(@PathVariable("id") long id) {
+    public ResponseEntity<?> delete(@PathVariable("id") Long id) {
         deviceService.delete(id);
         return ResponseEntity.ok().body("Device with Id = " + id + " has been deleted successfully.");
     }

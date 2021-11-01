@@ -11,21 +11,22 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
-@Entity // TODO chec
+@Entity
 @Table(name = "owners")
-public class Owner  {
+public class Owner implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    //TODO Long
-    private long id;
+    @Column(name = "id")
+    private Long id;
 
     @Column(name = "first_name")
     private String firstName;
 
     @Column(name = "last_name")
     private String lastName;
-// Columm +
+
+    @Column(name = "password")
     private String password;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
@@ -47,18 +48,18 @@ public class Owner  {
         this.password = password;
     }
 
-    public Owner(long id, String firstName, String lastName, String password) {
+    public Owner(Long id, String firstName, String lastName, String password) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -105,8 +106,7 @@ public class Owner  {
         this.deviceList = deviceList;
     }
 
-    @Override
-    public boolean equals(Object o) {
+    public boolean equalsToTest(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Owner owner = (Owner) o;

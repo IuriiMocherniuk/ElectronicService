@@ -24,12 +24,12 @@ public class DeviceDaoImp implements DeviceDao {
 
     @Override
     public Device save(Device device) {
-        long id = (long) sessionFactory.getCurrentSession().save(device);
+        Long id = (Long) sessionFactory.getCurrentSession().save(device);
         return sessionFactory.getCurrentSession().get(Device.class, id);
     }
 
     @Override
-    public Device get(long id) {
+    public Device get(Long id) {
         return sessionFactory.getCurrentSession().get(Device.class, id);
     }
 
@@ -46,7 +46,7 @@ public class DeviceDaoImp implements DeviceDao {
     }
 
     @Override
-    public Device update(long id, Device device) {
+    public Device update(Long id, Device device) {
         Session session = sessionFactory.getCurrentSession();
         Device device2 = session.byId(Device.class).load(id);
         device2.setType(device.getType());
@@ -58,7 +58,7 @@ public class DeviceDaoImp implements DeviceDao {
     }
 
     @Override
-    public void delete(long id) {
+    public void delete(Long id) {
         Session session = sessionFactory.getCurrentSession();
         Device device = session.byId(Device.class).load(id);
         session.delete(device);

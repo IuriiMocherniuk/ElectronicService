@@ -12,22 +12,27 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "devices")
-public class Device {
+public class Device  implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @Column(name = "id")
+    private Long id;
 
+    @Column(name = "type")
     private String type;
 
+    @Column(name = "name")
     private String name;
 
+    @Column(name = "code")
     private String code;
 
     @ManyToOne
     @JoinColumn(name = "owner_id", referencedColumnName = "id")
     private Owner owner;
 
+    @Column(name = "status")
     private String status;
 
     @CreationTimestamp
@@ -40,7 +45,7 @@ public class Device {
     @Column(name = "update_date")
     private LocalDateTime updateDate;
 
-    public Device(long id, String type, String name, String code, Owner owner, String status) {
+    public Device(Long id, String type, String name, String code, Owner owner, String status) {
         this.id = id;
         this.type = type;
         this.name = name;
@@ -61,7 +66,7 @@ public class Device {
 
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -127,8 +132,7 @@ public class Device {
         this.updateDate = updateDate;
     }
 
-    @Override
-    public boolean equals(Object o) {
+    public boolean equalsToTest(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Device device = (Device) o;
