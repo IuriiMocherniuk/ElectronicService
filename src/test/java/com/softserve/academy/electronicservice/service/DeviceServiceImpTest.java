@@ -3,6 +3,7 @@ package com.softserve.academy.electronicservice.service;
 import com.softserve.academy.electronicservice.dao.DeviceDao;
 import com.softserve.academy.electronicservice.model.Device;
 
+import com.softserve.academy.electronicservice.model.Owner;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.testng.annotations.AfterMethod;
@@ -27,6 +28,9 @@ public class DeviceServiceImpTest {
     public void init() {
         MockitoAnnotations.initMocks(this);
         deviceService = new DeviceServiceImp(deviceDao);
+        Owner owner1 = new Owner("Ivan", "Ivanov", UUID.randomUUID().toString());
+        Owner owner2 = new Owner("Petro", "Ivanov", UUID.randomUUID().toString());
+        Device device = new Device("Phone", "iPhone", "1111_222_333_444", owner1, "used");
     }
 
     @AfterMethod
@@ -38,17 +42,20 @@ public class DeviceServiceImpTest {
     @Test
     public void saveTest() {
         long expectedId = 1;
-        Device device = new Device("Phone", "iPhone", 1111_222_333_444L, 1, "used");
-        when(deviceDao.save(device)).thenReturn(expectedId);
-        long actualId = deviceService.save(device);
-        assertEquals(expectedId, actualId);
+        Owner owner1 = new Owner("Ivan", "Ivanov", UUID.randomUUID().toString());
+        Owner owner2 = new Owner("Petro", "Ivanov", UUID.randomUUID().toString());
+        Device device = new Device("Phone", "iPhone", "1111_222_333_444", owner1, "used");
+        when(deviceDao.save(device)).thenReturn(device);
+        Device actualDevice = deviceService.save(device);
+        assertEquals(device, actualDevice);
         verify(deviceDao, times(1)).save(device);
     }
 
     @Test
     public void updateTest() {
         long expectedId = 1;
-        Device device = new Device("Phone", "iPhone", 1111_222_333_444L, 1, "used");
+        Owner owner1 = new Owner("Ivan", "Ivanov", UUID.randomUUID().toString());
+        Device device = new Device("Phone", "iPhone", "1111_222_333_444", owner1, "used");
         when(deviceDao.update(expectedId, device)).thenReturn(device);
         when(deviceDao.update(expectedId, device)).thenReturn(device);
         assertEquals(device, deviceDao.update(expectedId, device));
@@ -58,8 +65,9 @@ public class DeviceServiceImpTest {
     @Test
     public void deleteTest() {
         long expectedId = 1;
-        Device device = new Device("Phone", "iPhone", 1111_222_333_444L, 1, "used");
-        when(deviceDao.save(device)).thenReturn(expectedId);
+        Owner owner1 = new Owner("Ivan", "Ivanov", UUID.randomUUID().toString());
+        Device device = new Device("Phone", "iPhone", "1111_222_333_444", owner1, "used");
+        when(deviceDao.save(device)).thenReturn(device);
         doNothing().when(deviceDao).delete(expectedId);
         deviceService.delete(expectedId);
         verify(deviceDao, times(1)).delete(expectedId);
@@ -67,9 +75,9 @@ public class DeviceServiceImpTest {
 
     @Test
     public void getAllTest() {
-
-        Device device1 = new Device("Phone", "iPhone10", 1111_222_333_444L, 1, "used");
-        Device device2 = new Device("Phone", "iPhone11", 1111_222_333_444L, 2, "used");
+        Owner owner1 = new Owner("Ivan", "Ivanov", UUID.randomUUID().toString());
+        Device device1 = new Device("Phone", "iPhone10", "1111_222_333_444", owner1, "used");
+        Device device2 = new Device("Phone", "iPhone11", "1111_222_333_444", owner1, "used");
         List<Device> actualList = Arrays.asList(device1, device2);
         when(deviceDao.getAll()).thenReturn(actualList);
         List<Device> expectedList = deviceService.getAll();
@@ -84,7 +92,8 @@ public class DeviceServiceImpTest {
     @Test
     public void getTest() {
         long expectedId = 1;
-        Device device = new Device("Phone", "iPhone10", 1111_222_333_444L, 1, "used");
+        Owner owner1 = new Owner("Ivan", "Ivanov", UUID.randomUUID().toString());
+        Device device = new Device("Phone", "iPhone10", "1111_222_333_444", owner1, "used");
         when(deviceDao.get(expectedId)).thenReturn(device);
         Device expectedDevice = deviceService.get(expectedId);
         assertEquals(device, expectedDevice);

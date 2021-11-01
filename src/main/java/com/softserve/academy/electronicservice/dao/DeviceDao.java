@@ -15,8 +15,6 @@ public interface DeviceDao {
 
     List<Device> getAll();
 
-//    List<Device> getByOwner(Owner owner);
-
     Device update(long id, Device device);
 
     void delete(long id);

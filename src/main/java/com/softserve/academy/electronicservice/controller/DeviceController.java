@@ -20,7 +20,6 @@ public class DeviceController {
         this.deviceService = deviceService;
     }
 
-    /*---Add new device---*/
     @PostMapping("/device/add")
     public ResponseEntity<Device> save(@RequestBody Device device) {
         System.out.println("the json value of device is :::::: " + device);
@@ -28,36 +27,29 @@ public class DeviceController {
         return ResponseEntity.ok().body(deviceAdd);
     }
 
-    /*---Get a owner by id---*/
     @GetMapping("/device/{id}")
     public ResponseEntity<Device> get(@PathVariable("id") long id) {
         Device device = deviceService.get(id);
         return ResponseEntity.ok().body(device);
     }
 
-    /*---get all owners---*/
     @GetMapping("/device")
     public ResponseEntity<List<Device>> getAll() {
         List<Device> devices = deviceService.getAll();
         return ResponseEntity.ok().body(devices);
     }
 
-    /*---Update a owner by id---*/
     @PutMapping("/device/{id}")
     public ResponseEntity<?> update(@PathVariable("id") long id, @RequestBody Device device) {
-//       deviceService.update(id, device);
-       Device deviceUpdate =  deviceService.update(id, device);
-//        return ResponseEntity.ok().body(device);
-        return ResponseEntity.ok().body("Device has been updated: "+ deviceUpdate);
+        Device deviceUpdate = deviceService.update(id, device);
+        return ResponseEntity.ok().body("Device has been updated: " + deviceUpdate);
     }
 
-    /*---Delete a owner by id---*/
     @DeleteMapping("/device/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") long id) {
         deviceService.delete(id);
-        return ResponseEntity.ok().body("Device with Id = "+ id+" has been deleted successfully.");
+        return ResponseEntity.ok().body("Device with Id = " + id + " has been deleted successfully.");
     }
-
 
 }
 

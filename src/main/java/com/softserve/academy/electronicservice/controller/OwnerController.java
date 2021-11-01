@@ -1,7 +1,7 @@
 package com.softserve.academy.electronicservice.controller;
 
-import com.softserve.academy.electronicservice.model.Owner;
 import com.softserve.academy.electronicservice.dto.OwnerDetailsDTO;
+import com.softserve.academy.electronicservice.model.Owner;
 import com.softserve.academy.electronicservice.service.OwnerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +22,6 @@ public class OwnerController {
         this.ownerService = ownerService;
     }
 
-    /*---Add new owner---*/
     @PostMapping("/owner/add")
     public ResponseEntity<Owner> save(@RequestBody Owner owner) {
         System.out.println("the json value of owner is :::::: " + owner);
@@ -30,39 +29,32 @@ public class OwnerController {
         return ResponseEntity.ok().body(ownerAdd);
     }
 
-    /*---Update a owner by id---*/
     @PutMapping("/owner/{id}")
     public ResponseEntity<?> update(@PathVariable("id") long id, @RequestBody Owner owner) {
         Owner ownerUpdate = ownerService.update(id, owner);
-        return ResponseEntity.ok().body("Owner has been created : "+ ownerUpdate);
+        return ResponseEntity.ok().body("Owner has been created : " + ownerUpdate);
     }
 
-
-    /*---Get a owner by id---*/
     @GetMapping("/owner/{id}")
-
     public ResponseEntity<OwnerDetailsDTO> get(@PathVariable("id") long id) {
         Owner owner = ownerService.get(id);
         return ResponseEntity.ok().body(OwnerDetailsDTO.toOwnerDetail(owner));
     }
 
-    /*---get all owners---*/
     @GetMapping("/owner")
     public ResponseEntity<List<Owner>> getAll() {
         List<Owner> owners = ownerService.getAll();
         return ResponseEntity.ok().body(owners);
     }
 
-    /*---Delete a owner by id---*/
     @DeleteMapping("/owner/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") long id) {
         ownerService.delete(id);
-            return ResponseEntity.ok().body("Owner with Id = "+ id+" has been deleted successfully.");
+        return ResponseEntity.ok().body("Owner with Id = " + id + " has been deleted successfully.");
     }
 
     @GetMapping("/")
     public ResponseEntity<List<String>> home() {
-        // List<Owner> owners = ownerService.getAll();
         return ResponseEntity.ok().body(Arrays.asList("Hello project", "Electronic Service"));
     }
 }

@@ -1,21 +1,17 @@
 package com.softserve.academy.electronicservice.dao;
 
 import com.softserve.academy.electronicservice.model.Device;
-import com.softserve.academy.electronicservice.model.Owner;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
-//@Transactional
-// TODO Change test dao layer
 @Repository
 public class DeviceDaoImp implements DeviceDao {
 
@@ -49,21 +45,6 @@ public class DeviceDaoImp implements DeviceDao {
 
     }
 
-//    @Override
-//    public List<Device> getByOwner(Owner owner) {
-//        return null;
-//    }
-
-//    @Override
-//    public List<Device> getByOwner(Owner owner) {
-//        Session session = sessionFactory.getCurrentSession();
-//        CriteriaBuilder cb = session.getCriteriaBuilder();
-//        CriteriaQuery<Device> cq = cb.createQuery(Device.class);
-//        Root<Device> root = cq.from(Device.class);
-//        Query<Device> query = session.createQuery(cq);
-//        return query.getResultList(Device.class, owner);
-//    }
-
     @Override
     public Device update(long id, Device device) {
         Session session = sessionFactory.getCurrentSession();
@@ -71,12 +52,9 @@ public class DeviceDaoImp implements DeviceDao {
         device2.setType(device.getType());
         device2.setName(device.getName());
         device2.setCode(device.getCode());
-       // device2.setOwnerId(device.getOwnerId());
         device2.setStatus(device.getStatus());
-       // device2.setUpdateDate(device.getUpdateDate());
         session.flush();
-        return sessionFactory.getCurrentSession().get(Device.class, id);
-//        return session.get(Device.class, id);
+        return session.get(Device.class, id);
     }
 
     @Override
@@ -84,6 +62,7 @@ public class DeviceDaoImp implements DeviceDao {
         Session session = sessionFactory.getCurrentSession();
         Device device = session.byId(Device.class).load(id);
         session.delete(device);
+
         session.flush();
     }
 

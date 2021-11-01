@@ -15,8 +15,6 @@ import javax.persistence.criteria.Root;
 import java.io.Serializable;
 import java.util.List;
 
-//@Transactional
-// TODO Change test dao layer
 @Repository
 public class OwnerDaoImp implements OwnerDao {
 
@@ -57,7 +55,6 @@ public class OwnerDaoImp implements OwnerDao {
         owner2.setLastName(owner.getLastName());
         owner2.setPassword(owner.getPassword());
         session.flush();
-//        return owner;
         return sessionFactory.getCurrentSession().get(Owner.class, id);
     }
 

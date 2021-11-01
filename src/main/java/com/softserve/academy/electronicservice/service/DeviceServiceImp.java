@@ -39,9 +39,10 @@ public class DeviceServiceImp implements DeviceService {
     @Transactional
     @Override
     public Device update(long id, Device device) {
-       deviceDao.update(id, device);
+        deviceDao.update(id, device);
         return device;
     }
+
     @Transactional
     @Override
     public void delete(long id) {

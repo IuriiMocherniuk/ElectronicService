@@ -1,14 +1,11 @@
 package com.softserve.academy.electronicservice.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Objects;
@@ -25,17 +22,10 @@ public class Device {
 
     private String name;
 
-    private long code;
+    private String code;
 
-//    //    @OneToMany
-//    @JoinColumn(name = "owner_id", referencedColumnName = "id")
-//    @Column(name = "owner_id")
-//    private long ownerId;
-
-//    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "owner_id", referencedColumnName = "id")
-//    @JoinColumn(name = "owner_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Owner owner;
 
     private String status;
@@ -50,7 +40,7 @@ public class Device {
     @Column(name = "update_date")
     private LocalDateTime updateDate;
 
-    public Device(long id, String type, String name, long code, Owner owner, String status) {
+    public Device(long id, String type, String name, String code, Owner owner, String status) {
         this.id = id;
         this.type = type;
         this.name = name;
@@ -59,7 +49,7 @@ public class Device {
         this.status = status;
     }
 
-    public Device(String type, String name, long code, Owner owner, String status) {
+    public Device(String type, String name, String code, Owner owner, String status) {
         this.type = type;
         this.name = name;
         this.code = code;
@@ -95,11 +85,11 @@ public class Device {
         this.name = mane;
     }
 
-    public long getCode() {
+    public String getCode() {
         return code;
     }
 
-    public void setCode(long code) {
+    public void setCode(String code) {
         this.code = code;
     }
 
@@ -112,14 +102,6 @@ public class Device {
     public void setOwner(Owner owner) {
         this.owner = owner;
     }
-
-//    public long getOwnerId() {
-//        return ownerId;
-//    }
-//
-//    public void setOwnerId(long ownerId) {
-//        this.ownerId = ownerId;
-//    }
 
     public String getStatus() {
         return status;
@@ -152,7 +134,6 @@ public class Device {
         Device device = (Device) o;
         return id == device.id
                 && code == device.code
-//                && ownerId == device.ownerId
                 && Objects.equals(type, device.type)
                 && Objects.equals(name, device.name)
                 && Objects.equals(status, device.status)
@@ -161,7 +142,7 @@ public class Device {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, type, name, code,/* ownerId,*/ status, createdDate);
+        return Objects.hash(id, type, name, code, status, createdDate);
     }
 
     @Override
@@ -171,7 +152,6 @@ public class Device {
                 ", type='" + type + '\'' +
                 ", name='" + name + '\'' +
                 ", code=" + code +
-//                ", ownerId=" + ownerId +
                 ", owner=" + owner +
                 ", status='" + status + '\'' +
                 ", createdDate=" + createdDate +

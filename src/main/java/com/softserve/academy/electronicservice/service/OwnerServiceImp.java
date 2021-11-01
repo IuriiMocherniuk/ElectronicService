@@ -39,6 +39,9 @@ public class OwnerServiceImp implements OwnerService {
     @Transactional
     @Override
     public Owner update(long id, Owner owner) {
+        if (owner.getPassword() == null) {
+            owner.setPassword(get(id).getPassword());
+        }
         ownerDao.update(id, owner);
         return owner;
     }

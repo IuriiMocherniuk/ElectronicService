@@ -6,7 +6,6 @@ import org.springframework.core.env.Environment;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.Properties;
 
@@ -15,7 +14,6 @@ import static org.hibernate.cfg.Environment.*;
 @Configuration
 @PropertySource("classpath:hibernate.properties")
 @EnableTransactionManagement
-//@ComponentScans(value = {@ComponentScan("com.softserve.academy.electronicservice.*")})
 @ComponentScans(value = {@ComponentScan("com.softserve.academy.electronicservice.dao"),
         @ComponentScan("com.softserve.academy.electronicservice.service")})
 

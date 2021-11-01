@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.softserve.academy.electronicservice.configuration.AppConfig;
 import com.softserve.academy.electronicservice.model.Owner;
 import com.softserve.academy.electronicservice.service.OwnerService;
-import org.hamcrest.Matcher;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -72,8 +71,8 @@ public class OwnerControllerTest {
         Mockito.when(ownerServiceMock.getAll()).thenReturn(Arrays.asList(expectedOwner, owner2));
         mockMvc.perform(MockMvcRequestBuilders.get(url))
                 .andExpect(content().string("[{\"id\":1,\"firstName\":\"Ivan\",\"lastName\":\"Ivanov\"," +
-                        "\"createdDate\":null,\"deviceList\":null},{\"id\":2,\"firstName\":\"Petro\",\"lastName\":" +
-                        "\"Ivanov2\",\"createdDate\":null,\"deviceList\":null}]"))
+                        "\"createdDate\":null},{\"id\":2,\"firstName\":\"Petro\",\"lastName\":" +
+                        "\"Ivanov2\",\"createdDate\":null}]"))
                 .andExpect(status().isOk());
         Mockito.verify(ownerServiceMock, Mockito.times(1)).getAll();
     }
@@ -84,7 +83,7 @@ public class OwnerControllerTest {
         Mockito.when(ownerServiceMock.get(1L)).thenReturn(expectedOwner);
         mockMvc.perform(MockMvcRequestBuilders.get(url))
                 .andExpect(content().string("{\"id\":1,\"firstName\":\"Ivan\",\"lastName\":\"Ivanov\"," +
-                        "\"createdDate\":null,\"deviceList\":null}"))
+                        "\"createdDate\":null,\"devices\":null}"))
                 .andExpect(status().isOk());
         Mockito.verify(ownerServiceMock, Mockito.times(1)).get(expectedOwner.getId());
     }
@@ -98,7 +97,7 @@ public class OwnerControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.post(url).contentType(APPLICATION_JSON_UTF8)
                 .content(requestJson))
                 .andExpect(status().isOk())
-                .andExpect(content().string("{\"id\":1,\"firstName\":\"Ivan\",\"lastName\":\"Ivanov\",\"createdDate\":null,\"deviceList\":null}"));
+                .andExpect(content().string("{\"id\":1,\"firstName\":\"Ivan\",\"lastName\":\"Ivanov\",\"createdDate\":null}"));
         Mockito.verify(ownerServiceMock, Mockito.times(1)).save(any(Owner.class));
     }
 
@@ -110,7 +109,7 @@ public class OwnerControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.put(url).contentType(APPLICATION_JSON_UTF8)
                 .content(requestJson))
                 .andExpect(status().isOk())
-                .andExpect(content().string("{\"id\":1,\"firstName\":\"Ivan\",\"lastName\":\"Ivanov\",\"createdDate\":null,\"deviceList\":null}"));
+                .andExpect(content().string("Owner has been created : Owner{id=1, firstName='Ivan', lastName='Ivanov', password='password', createdDate=null}"));
         Mockito.verify(ownerServiceMock, Mockito.times(1)).update(eq(1L), any(Owner.class));
     }
 

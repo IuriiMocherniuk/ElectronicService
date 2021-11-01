@@ -13,13 +13,6 @@ repositories {
 }
 
 dependencies {
-//    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
-//    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
-//    implementation group: 'org.springframework', name: 'org.springframework.orm', version: '3.2.2.RELEASE'
-//    implementation 'org.hibernate:hibernate-core-jakarta:5.5.7.Final'
-
-
-
     implementation group: 'org.springframework', name: 'spring-webmvc', version: '5.3.10'
     implementation group: 'org.springframework', name: 'spring', version: '5.3.10', ext: 'pom'
     implementation group: 'org.springframework', name: 'spring-core', version: '5.3.10'
@@ -28,18 +21,7 @@ dependencies {
     implementation group: 'com.mchange', name: 'c3p0', version: '0.9.5.5'
     implementation group: 'org.postgresql', name: 'postgresql', version: '42.2.24'
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.13.0'
-
-
-//    --------------------------------
-//    implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.0'
-//    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.13.0'
-//    --------------------------------
-
-
     implementation 'javax.servlet:javax.servlet-api:4.0.1'
-    // compileOnly group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
-
-
     implementation group: 'org.apache.tomcat', name: 'tomcat-catalina', version: '10.1.0-M6'
     implementation group: 'org.springframework', name: 'spring-orm', version: '5.3.9'
     implementation 'org.glassfish.jaxb:jaxb-runtime:3.0.0'
@@ -47,12 +29,7 @@ dependencies {
     testImplementation group: 'org.mockito', name: 'mockito-all', version: '1.10.19'
     testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.21.0'
     implementation 'org.springframework:spring-test:5.2.17.RELEASE'
-
     implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.13.0'
-
-    //testImplementation group: 'io.rest-assured', name: 'spring-mock-mvc', version: '4.4.0' //5
-
-//-------------------------------------------test----------------------------------------
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testImplementation 'org.junit.platform:junit-platform-runner:1.8.1'

@@ -3,6 +3,7 @@ package com.softserve.academy.electronicservice.dao;
 import com.softserve.academy.electronicservice.configuration.AppConfig;
 import com.softserve.academy.electronicservice.dao.DeviceDao;
 import com.softserve.academy.electronicservice.model.Device;
+import com.softserve.academy.electronicservice.model.Owner;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.testng.annotations.BeforeClass;
@@ -10,6 +11,7 @@ import org.testng.annotations.Test;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.testng.Assert.assertEquals;
@@ -27,51 +29,51 @@ public class DeviceDaoImpTest {
 
     @Test
     public void saveTest() {
-        Device device = new Device("Phone", "iPhone", 1111_222_333_444L, 1, "used");
-        long id = deviceDao.save(device);
-        Device device1 = deviceDao.get(id);
+        Owner owner = new Owner("Ivan", "Ivanov", UUID.randomUUID().toString());
+        Device device = new Device("Phone", "iPhone", "1111_222_333_444", owner, "used");
+        Device device1 = deviceDao.save(device);
         assertEquals(device, device1);
-        delete(id);
+        delete(device.getId());
     }
 
     @Test
     public void updateTest() {
-        Device device = new Device("Phone", "iPhone", 1111_222_333_444L, 1, "used");
-        long id = deviceDao.save(device);
-        Device actualDevice = deviceDao.get(id);
-        actualDevice.setOwnerId(2);
-        deviceDao.update(id, actualDevice);
-        Device deviceUpdate = deviceDao.get(id);
+        Owner owner = new Owner("Ivan", "Ivanov", UUID.randomUUID().toString());
+        Owner owner2 = new Owner("Ivan", "Ivanov", UUID.randomUUID().toString());
+        Device device = new Device("Phone", "iPhone", "1111_222_333_4445", owner, "used");
+        Device actualDevice = deviceDao.save(device);
+        actualDevice.setOwner(owner2);
+        deviceDao.update(actualDevice.getId(), actualDevice);
+        Device deviceUpdate = deviceDao.get(actualDevice.getId());
         assertEquals(actualDevice, deviceUpdate);
-        delete(id);
+        delete(actualDevice.getId());
     }
 
     @Test
     public void deleteTest() {
-        Device device = new Device("Phone", "iPhone", 1111_222_333_444L, 1, "used");
-        long id = deviceDao.save(device);
-        Device actualDevice = deviceDao.get(id);
+        Owner owner = new Owner("Ivan", "Ivanov", UUID.randomUUID().toString());
+        Device device = new Device("Phone", "iPhone", "1111_222_333_4443", owner, "used");
+        Device actualDevice = deviceDao.save(device);
         assertEquals(device, actualDevice);
-        delete(id);
-        Device deleteDevice = deviceDao.get(id);
+        delete(actualDevice.getId());
+        Device deleteDevice = deviceDao.get(actualDevice.getId());
         assertNull(deleteDevice);
     }
 
     @Test
     public void getAllTest() {
-
-
-        Device device1 = new Device("Phone", "iPhone10", 1111_222_333_444L, 1, "used");
-        Device device2 = new Device("Phone", "iPhone11", 1111_222_333_444L, 2, "used");
-        long id1 = deviceDao.save(device1);
-        long id2 = deviceDao.save(device2);
+        Owner owner = new Owner("Ivan", "Ivanov", UUID.randomUUID().toString());
+        Device device1 = new Device("Phone", "iPhone10", "1111_222_333_4445", owner, "used");
+        Device device2 = new Device("Phone", "iPhone11", "1111_222_333_444", owner, "used");
+        Device savedDevice1 = deviceDao.save(device1);
+        Device savedDevice2 = deviceDao.save(device2);
         List<Device> actualList = deviceDao.getAll();
         assertThat(actualList)
                 .isNotNull()
                 .isNotEmpty()
                 .hasSizeGreaterThan(1)
                 .contains(device1, device2);
-        delete(id1, id2);
+        delete(savedDevice1.getId(), savedDevice2.getId());
 
     }
 

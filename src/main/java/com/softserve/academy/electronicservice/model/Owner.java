@@ -6,17 +6,18 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Objects;
 
-@Entity
+@Entity // TODO chec
 @Table(name = "owners")
-public class Owner {
+public class Owner  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //TODO Long
     private long id;
 
     @Column(name = "first_name")
@@ -24,7 +25,7 @@ public class Owner {
 
     @Column(name = "last_name")
     private String lastName;
-
+// Columm +
     private String password;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
@@ -44,7 +45,6 @@ public class Owner {
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
-       // this.createdDate = LocalDateTime.now();
     }
 
     public Owner(long id, String firstName, String lastName, String password) {

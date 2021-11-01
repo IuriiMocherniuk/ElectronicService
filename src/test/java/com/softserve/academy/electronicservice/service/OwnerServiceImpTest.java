@@ -38,7 +38,6 @@ public class OwnerServiceImpTest {
 
     @Test
     public void saveTest() {
-        long expectedId = 1;
         Owner owner = new Owner("Ivan", "Ivanov", "password");
         when(ownerDao.save(owner)).thenReturn(owner);
         Owner actualOwner = ownerService.save(owner);
