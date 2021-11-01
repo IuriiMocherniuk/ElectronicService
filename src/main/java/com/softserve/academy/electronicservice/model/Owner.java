@@ -36,6 +36,7 @@ public class Owner implements Serializable {
 
     // TODO check fetch = FetchType.EAGER
     @JsonIgnore
+//    @OneToMany(mappedBy = "owner")
     @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
     private List<Device> deviceList;
 
